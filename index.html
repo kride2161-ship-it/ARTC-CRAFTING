@@ -4,59 +4,70 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>АРТС&КРАФТИНГ | Ремонт одежды</title>
-  <!-- Подключение Tailwind CSS -->
+  
+  <!-- Подключаем Tailwind CSS для превосходной верстки -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
   <style>
-    /* Переменные Светлой и Тёмной темы */
+    /* Переменные ультра-стеклянной темы с легкими платиновыми и мятными микро-акцентами */
     :root {
-      --ios-green: #34c759;
+      --ios-green: #10b981;
       --ios-blue: #007aff;
-      --spring: cubic-bezier(0.4, 0, 0.2, 1.4);
-      --mesh-1: #e0f2fe;
-      --mesh-2: #dcfce7;
-      --mesh-3: #f3e8ff;
-      --mesh-4: #ffedd5;
-      --glass-bg: rgba(255, 255, 255, 0.15);
-      --glass-border: rgba(255, 255, 255, 0.4);
-      --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
-      --text-main: #1c1c1e;
-      --text-muted: #8e8e93;
-      --divider: rgba(0, 0, 0, 0.05);
-      --card-hover: rgba(0, 0, 0, 0.03);
+      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      
+      /* Светлая тема: чистейший кристальный воздух с едва заметной мятной дымкой в углу */
+      --mesh-1: #f8fafc;
+      --mesh-2: #e0f2fe;
+      --mesh-3: #faf5ff;
+      --mesh-4: #f0fdf4;
+      
+      /* Жидкое стекло высокой прозрачности */
+      --glass-bg: rgba(255, 255, 255, 0.35);
+      --glass-border: rgba(255, 255, 255, 0.65);
+      --glass-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+      --glass-shadow-hover: 0 15px 40px rgba(15, 23, 42, 0.08);
+      
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --divider: rgba(15, 23, 42, 0.05);
+      --card-hover: rgba(255, 255, 255, 0.7);
     }
 
     body.dark-theme {
-      --mesh-1: #0f172a;
-      --mesh-2: #064e3b;
-      --mesh-3: #3b0764;
-      --mesh-4: #451a03;
-      --glass-bg: rgba(15, 23, 42, 0.25);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-      --text-main: #ffffff;
-      --text-muted: #a1a1a6;
-      --divider: rgba(255, 255, 255, 0.08);
-      --card-hover: rgba(255, 255, 255, 0.05);
+      /* Темная тема: глубокий космос с мягким неоново-изумрудным сиянием */
+      --mesh-1: #090d16;
+      --mesh-2: #1e112a;
+      --mesh-3: #030712;
+      --mesh-4: #022c16;
+      
+      /* Темное кристальное стекло */
+      --glass-bg: rgba(15, 23, 42, 0.35);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      --glass-shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.45);
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --divider: rgba(255, 255, 255, 0.06);
+      --card-hover: rgba(15, 23, 42, 0.65);
     }
 
-    /* Сброс стилей и шрифты */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
+      font-family: 'Inter', -apple-system, sans-serif;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       background-color: var(--mesh-1);
       color: var(--text-main);
       overflow-x: hidden;
-      transition: background-color 0.5s ease, color 0.5s ease;
+      transition: background-color 0.8s ease, color 0.8s ease;
     }
 
     /* Живой градиентный фон (Mesh Gradient) */
@@ -64,25 +75,26 @@
       position: fixed;
       inset: 0;
       z-index: -4;
-      background: radial-gradient(circle at 15% 50%, var(--mesh-1), transparent 50%),
-                  radial-gradient(circle at 85% 30%, var(--mesh-2), transparent 50%),
-                  radial-gradient(circle at 90% 90%, var(--mesh-3), transparent 50%),
-                  radial-gradient(circle at 10% 90%, var(--mesh-4), transparent 50%);
-      filter: blur(80px);
-      animation: breathe 20s ease-in-out infinite alternate;
-      transition: all 0.5s ease;
+      background: radial-gradient(circle at 15% 30%, var(--mesh-1), transparent 55%),
+                  radial-gradient(circle at 85% 20%, var(--mesh-2), transparent 55%),
+                  radial-gradient(circle at 90% 80%, var(--mesh-3), transparent 55%),
+                  radial-gradient(circle at 10% 90%, var(--mesh-4), transparent 55%);
+      filter: blur(60px) saturate(120%);
+      animation: breatheBg 25s ease-in-out infinite alternate;
+      transition: all 0.8s ease;
     }
 
-    @keyframes breathe {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.08); }
+    @keyframes breatheBg {
+      0% { transform: scale(1) rotate(0deg); }
+      15% { transform: scale(1.03) rotate(1deg); }
+      100% { transform: scale(1.01) rotate(-1deg); }
     }
 
-    /* Летние бесшовные волны */
+    /* Летние волны (с 1 июня по 1 сентября) */
     .summer-waves-bg {
       position: fixed;
-      bottom: 0; left: 0; right: 0;
-      height: 220px;
+      bottom: -15px; left: 0; right: 0;
+      height: 200px;
       z-index: -3;
       display: none;
       pointer-events: none;
@@ -93,89 +105,125 @@
       position: absolute;
       bottom: 0; left: 0;
       width: 200vw; height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23007aff" fill-opacity="0.15" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,181.3C960,203,1056,213,1152,197.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%2310b981" fill-opacity="0.12" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,181.3C960,203,1056,213,1152,197.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
       background-size: 50% 100%;
-      animation: waveMove 16s linear infinite;
+      animation: waveMoveOne 20s linear infinite;
     }
 
     .summer-wave:nth-child(2) {
-      bottom: -10px; opacity: 0.6;
-      animation: waveMove 22s linear infinite reverse;
+      bottom: -10px; opacity: 0.8;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%230284c7" fill-opacity="0.10" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,181.3C960,203,1056,213,1152,197.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+      animation: waveMoveTwo 25s linear infinite;
     }
 
     .summer-wave:nth-child(3) {
-      bottom: -20px; opacity: 0.4;
-      animation: waveMove 30s linear infinite;
+      bottom: -5px; opacity: 0.6;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%2310b981" fill-opacity="0.08" d="M0,120L48,135C96,150,192,180,288,170C384,160,480,110,576,105C672,100,768,130,864,150C960,170,1056,180,1152,165C1248,150,1344,110,1392,95L1440,80L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+      animation: waveMoveOne 30s linear infinite;
     }
 
-    @keyframes waveMove {
+    @keyframes waveMoveOne {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50vw); }
     }
 
-    /* Эффект осыпающегося песка */
-    .sand-letter {
-      display: inline-block;
-      transition: transform 1.2s cubic-bezier(0.36, 0, 0.66, -0.56), opacity 1s ease, filter 1s ease;
-      transform-origin: bottom center;
-    }
-    .sand-letter.crumble {
-      transform: translateY(80px) rotate(var(--rot)) scale(0.6);
-      opacity: 0;
-      filter: blur(4px);
+    @keyframes waveMoveTwo {
+      0% { transform: translateX(-50vw); }
+      100% { transform: translateX(0); }
     }
 
-    /* Частицы праздников */
-    .particle {
-      position: absolute;
-      top: -50px;
-      animation: fall linear infinite, sway ease-in-out infinite alternate;
-      user-select: none;
-    }
-
-    @keyframes fall {
-      0% { top: -10%; opacity: 0; }
-      10% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { top: 110%; opacity: 0; }
-    }
-    @keyframes sway {
-      0% { transform: translateX(0) rotate(0deg); }
-      100% { transform: translateX(20px) rotate(35deg); }
-    }
-
-    /* Георгиевская лента */
+    /* Георгиевские ленты на фоне */
     .ribbons-bg {
       position: fixed;
-      inset: 0;
+      top: 0; left: 0; width: 100%; height: 100%;
       z-index: -2;
-      opacity: 0.4;
+      opacity: 0.45;
       pointer-events: none;
       display: none;
     }
 
-    /* Чистый стеклянный стиль */
+    /* Чистейшее жидкое стекло */
     .pure-glass {
       background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(28px) saturate(140%);
+      -webkit-backdrop-filter: blur(28px) saturate(140%);
       border: 1px solid var(--glass-border);
       box-shadow: var(--glass-shadow);
+      transition: all 0.4s var(--spring);
+    }
+
+    .pure-glass:hover {
+      background: var(--card-hover);
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: var(--glass-shadow-hover);
+    }
+
+    .pure-glass-no-hover {
+      background: var(--glass-bg);
+      backdrop-filter: blur(28px) saturate(140%);
+      -webkit-backdrop-filter: blur(28px) saturate(140%);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
+      transition: all 0.4s ease;
+    }
+
+    #dynamic-island {
+      transition: width 0.5s var(--spring), height 0.5s var(--spring), border-radius 0.5s var(--spring), background-color 0.4s ease;
+    }
+
+    .sand-letter {
+      display: inline-block;
+      transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1s ease, filter 1s ease;
+      transform-origin: bottom center;
+    }
+    .sand-letter.crumble {
+      transform: translateY(100px) rotate(var(--rot)) scale(0.5);
+      opacity: 0;
+      filter: blur(6px);
+    }
+
+    .particle {
+      position: absolute;
+      top: -50px;
+      animation: particleFall linear infinite, particleSway ease-in-out infinite alternate;
+      user-select: none;
+      will-change: transform, top, opacity;
+      z-index: 10;
+    }
+
+    @keyframes particleFall {
+      0% { top: -10%; opacity: 0; }
+      15% { opacity: 1; }
+      85% { opacity: 1; }
+      100% { top: 110%; opacity: 0; }
+    }
+    @keyframes particleSway {
+      0% { transform: translateX(0) rotate(0deg); }
+      100% { transform: translateX(35px) rotate(45deg); }
+    }
+
+    /* Анимация клика (упругая кнопка) */
+    .active-scale:active {
+      transform: scale(0.96);
     }
   </style>
 </head>
 <body id="top">
 
-  <!-- Живой бэкграунд и сезонные модули -->
+  <!-- Живой бэкграунд -->
   <div class="mesh-background"></div>
+  
+  <!-- Фоновые летние волны (с 1 июня по 1 сентября) -->
   <div class="summer-waves-bg" id="summer-waves">
     <div class="summer-wave"></div>
     <div class="summer-wave"></div>
     <div class="summer-wave"></div>
   </div>
-  <div id="particles-container" class="fixed inset-0 pointer-events-none z-10"></div>
+  
+  <!-- Контейнер праздничных частиц -->
+  <div id="particles-container" class="fixed inset-0 pointer-events-none z-10 overflow-hidden"></div>
 
-  <!-- Георгиевские ленты на 9 мая -->
+  <!-- Георгиевские ленты на фоне -->
   <div class="ribbons-bg" id="ribbons-bg">
     <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
       <g stroke-linecap="square" opacity="0.6">
@@ -189,53 +237,52 @@
     </svg>
   </div>
 
-  <!-- Верхняя навигационная панель -->
-  <div class="sticky top-0 z-[100] w-full px-4 py-3 flex justify-center">
-    <div class="max-w-[1200px] w-full flex items-center justify-between relative h-[50px]">
+  <!-- Навигация: Идеально центрирована, адаптирована под ширину -->
+  <nav class="sticky top-0 z-[100] w-full px-4 py-3 flex justify-center backdrop-blur-md bg-white/10 dark:bg-slate-950/10 border-b border-white/10">
+    <div class="max-w-[1200px] w-full flex items-center justify-between relative h-[44px]">
       
-      <!-- Левый стек: BETA и UPDATE -->
-      <div class="flex items-center gap-2">
-        <div class="pure-glass px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider text-slate-500 dark:text-slate-400 select-none shadow-sm">
-          BETA 2026
-        </div>
-        <div class="pure-glass px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider text-amber-600 dark:text-amber-400 select-none shadow-sm flex items-center gap-1">
-          <span>?? UPDATE</span><span id="update-dots-header">...</span>
+      <!-- Левая часть: Смена темы и BETA -->
+      <div class="flex items-center gap-2 z-10">
+        <button id="theme-btn" onclick="toggleTheme()" class="pure-glass w-10 h-10 rounded-full flex items-center justify-center text-sm transition-all active-scale" aria-label="Смена темы">
+          <span id="theme-emoji" class="transition-transform duration-300">🌙</span>
+        </button>
+        <div class="pure-glass h-10 px-3.5 rounded-full text-[11px] font-bold tracking-widest text-emerald-600 dark:text-emerald-400 select-none flex items-center gap-2 uppercase">
+          <span>BETA</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
         </div>
       </div>
 
-      <!-- Центральный Dynamic Island -->
+      <!-- Центр: Dynamic Island -->
       <div class="absolute left-1/2 -translate-x-1/2 top-0 z-[101]">
-        <div id="dynamic-island" class="bg-black/90 dark:bg-black/95 text-white rounded-[26px] py-2.5 px-5 flex flex-col items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-xl cursor-pointer w-[200px] min-h-[44px]">
+        <div id="dynamic-island" class="bg-slate-950/95 dark:bg-black/95 border border-white/10 text-slate-50 rounded-[24px] py-2 px-4 flex flex-col items-center justify-center shadow-xl cursor-pointer w-[170px] min-h-[44px]">
           
-          <!-- Обычный свернутый вид -->
           <div id="island-collapsed" class="flex items-center gap-2.5 w-full justify-center transition-opacity duration-300">
-            <span id="status-dot" class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
-            <span id="status-text" class="text-xs font-bold tracking-wide select-none">Определяем...</span>
+            <span id="status-dot" class="w-2 h-2 rounded-full bg-slate-400 transition-colors duration-500"></span>
+            <span id="status-text" class="text-[11px] font-semibold tracking-wide select-none">Определяем...</span>
           </div>
 
-          <!-- Раскрытый вид (Список обновлений) -->
-          <div id="island-expanded" class="hidden flex-col w-full px-1 py-2 text-left transition-all duration-300">
-            <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-2">
-              <span id="expanded-date" class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Дата</span>
-              <span class="text-[10px] bg-white/15 px-2 py-0.5 rounded-full text-white font-bold uppercase">Сводка</span>
+          <div id="island-expanded" class="hidden flex-col w-full px-1 py-1 text-left transition-all duration-300">
+            <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-2 mt-1">
+              <span id="expanded-date" class="text-[10px] uppercase font-bold text-emerald-400 tracking-wider">Дата</span>
+              <span class="text-[9px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded-full font-bold uppercase border border-emerald-500/30">Release</span>
             </div>
-            <h4 class="text-xs font-bold text-white mb-2 tracking-wide" data-i18n="island_title">Что изменилось:</h4>
-            <ul class="space-y-1.5 text-[11px] text-slate-300 leading-relaxed">
+            <h4 class="text-[12px] font-bold text-white mb-2 tracking-wide" data-i18n="island_title">Нововведения:</h4>
+            <ul class="space-y-1.5 text-[11px] text-slate-200 leading-relaxed font-medium">
               <li class="flex items-start gap-1.5">
-                <span class="text-amber-400">?</span>
-                <span data-i18n="upd_1">Стеклянный интерфейс Pure Liquid Glass</span>
+                <span class="text-emerald-400 mt-0.5">✦</span>
+                <span data-i18n="upd_1">Чистейшее жидкое стекло</span>
               </li>
               <li class="flex items-start gap-1.5">
-                <span class="text-amber-400">?</span>
-                <span data-i18n="upd_2">Автономный информер летнего отпуска 2026</span>
+                <span class="text-emerald-400 mt-0.5">✦</span>
+                <span data-i18n="upd_2">Мобильная оптимизация под ПК</span>
               </li>
               <li class="flex items-start gap-1.5">
-                <span class="text-amber-400">?</span>
-                <span data-i18n="upd_3">Раздел контактов временно заблокирован</span>
+                <span class="text-emerald-400 mt-0.5">✦</span>
+                <span data-i18n="upd_3">Тончайшие кристальные рамки</span>
               </li>
               <li class="flex items-start gap-1.5">
-                <span class="text-amber-400">?</span>
-                <span data-i18n="upd_4">Исправлена логика запуска Dynamic Island</span>
+                <span class="text-emerald-400 mt-0.5">✦</span>
+                <span data-i18n="upd_4">Микро-акцентная палитра</span>
               </li>
             </ul>
           </div>
@@ -243,417 +290,283 @@
         </div>
       </div>
 
-      <!-- Правый стек: Выбор языка -->
-      <div class="relative">
-        <button id="lang-btn" onclick="toggleLangMenu()" class="pure-glass px-4 py-2 rounded-full text-xs font-bold text-[var(--text-main)] flex items-center gap-1.5 transition-all active:scale-95 shadow-sm">
-          <span id="lang-icon">????</span> <span id="lang-text">RU</span>
+      <!-- Правая часть: Выбор языка -->
+      <div class="relative z-10">
+        <button id="lang-btn" onclick="toggleLangMenu()" class="pure-glass px-4 h-10 rounded-full text-xs font-bold text-[var(--text-main)] flex items-center gap-1.5 transition-all active-scale">
+          <span id="lang-icon">🇷🇺</span> <span id="lang-text">RU</span>
         </button>
-        <div id="lang-menu" class="absolute right-0 top-[110%] w-[180px] pure-glass rounded-2xl overflow-hidden shadow-2xl opacity-0 pointer-events-none scale-95 transition-all duration-300 origin-top-right z-[105] !important">
-          <div onclick="setLang('ru')" class="px-4 py-3 text-xs font-semibold cursor-pointer flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/5 border-b border-[var(--divider)]">???? Русский</div>
-          <div onclick="setLang('en')" class="px-4 py-3 text-xs font-semibold cursor-pointer flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/5 border-b border-[var(--divider)]">???? English</div>
-          <div onclick="setLang('kz')" class="px-4 py-3 text-xs font-semibold cursor-pointer flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/5 border-b border-[var(--divider)]">???? ?аза?ша</div>
-          <div onclick="toggleTheme()" class="px-4 py-3 text-xs font-semibold cursor-pointer flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/5">
-            <span id="theme-emoji">??</span> <span id="theme-label" data-i18n="theme_dark">Тёмная тема</span>
-          </div>
+        <div id="lang-menu" class="absolute right-0 top-[120%] w-[150px] pure-glass-no-hover rounded-2xl overflow-hidden shadow-2xl opacity-0 pointer-events-none scale-95 transition-all duration-300 origin-top-right z-[105] border border-white/10">
+          <div onclick="setLang('ru')" class="px-4 py-3 text-xs font-semibold cursor-pointer flex items-center gap-2 hover:bg-emerald-500/10 transition-colors">🇷🇺 Русский</div>
+          <div onclick="setLang('en')" class="px-4 py-3 text-xs font-semibold cursor-pointer flex items-center gap-2 hover:bg-emerald-500/10 transition-colors">🇬🇧 English</div>
+          <div onclick="setLang('kz')" class="px-4 py-3 text-xs font-semibold cursor-pointer flex items-center gap-2 hover:bg-emerald-500/10 transition-colors">🇰🇿 Қазақша</div>
         </div>
       </div>
 
     </div>
-  </div>
+  </nav>
 
-  <!-- Основной контейнер с двухколоночной сеткой для ПК -->
-  <main class="max-w-[1200px] mx-auto px-4 pt-10 pb-32">
+  <!-- Основной контент: Двухколоночный Grid на ПК, стек на мобильных -->
+  <main class="max-w-[1200px] mx-auto px-4 py-6">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
-      <!-- ЛЕВАЯ КОЛОНКА (Логотип, Отпуск, Адрес, Контакты) -->
+      <!-- Левая колонка: Фирменный блок, отпуск и контакты -->
       <div class="lg:col-span-5 space-y-6">
         
-        <header class="text-center lg:text-left">
-          <h1 id="main-title" onclick="handleTitleClick()" class="text-4xl lg:text-5xl font-extrabold tracking-tight cursor-pointer select-none inline-block">АРТС&КРАФТИНГ</h1>
-          <p id="header-subtitle" class="text-slate-500 dark:text-slate-400 font-medium text-sm lg:text-base mt-2" data-i18n="subtitle">Ремонт одежды — честно и в срок</p>
+        <!-- Главный Заголовок и Бренд -->
+        <header class="pure-glass-no-hover p-6 rounded-[2rem] text-center relative overflow-hidden border border-white/20">
+          <h1 id="main-title" onclick="handleTitleClick()" class="text-3xl sm:text-4xl font-black tracking-tight cursor-pointer select-none inline-block hover:scale-[1.02] active-scale transition-transform duration-300 text-[var(--text-main)]">
+            АРТС&КРАФТИНГ
+          </h1>
+          <p id="header-subtitle" class="text-slate-500 dark:text-slate-400 font-semibold text-sm mt-2" data-i18n="subtitle">Ремонт одежды — честно и в срок</p>
           
-          <!-- Место под симулятор ПО -->
-          <div id="countdown-timer" class="mt-4"></div>
+          <!-- Симулятор ПО при осыпании -->
+          <div id="countdown-timer" class="mt-5 hidden"></div>
           
-          <div id="store-info-menu" class="hidden pure-glass p-6 rounded-3xl text-left mt-4 transition-all duration-500">
-            <h3 class="font-bold text-lg mb-3" data-i18n="menu_info">Информация о магазине</h3>
-            <div class="space-y-2.5 text-xs text-[var(--text-muted)]">
-              <p><strong>Основан:</strong> <span data-i18n="menu_date">22 февраля 2022 г. в 12:08</span></p>
-              <p><strong>История:</strong> <span data-i18n="menu_history_text">Был создан на 2 ряду напротив "Принт плюс", и потом был перекинут на второй ряд около фотомагазина Kodak.</span></p>
-              <p><strong>Управляющая:</strong> <span data-i18n="menu_manager_name">Ксения Бондаренко Сергеевна</span></p>
+          <!-- Профиль Магазина -->
+          <div id="store-info-menu" class="hidden bg-emerald-500/5 p-5 rounded-2xl text-left mt-5 transition-all duration-500 border border-emerald-500/10">
+            <h3 class="font-bold text-sm mb-3 text-[var(--text-main)]" data-i18n="menu_info">Информация о магазине</h3>
+            <div class="space-y-2.5 text-xs text-[var(--text-muted)] leading-relaxed">
+              <p><strong class="text-[var(--text-main)]">Основан:</strong> <span data-i18n="menu_date">22 февраля 2022 г. в 12:08</span></p>
+              <p><strong class="text-[var(--text-main)]">История:</strong> <span data-i18n="menu_history_text">Был создан на 2 ряду напротив "Принт плюс", и потом был перекинут на второй ряд около фотомагазина Kodak.</span></p>
+              <p><strong class="text-[var(--text-main)]">Управляющая:</strong> <span data-i18n="menu_manager_name">Ксения Бондаренко Сергеевна</span></p>
             </div>
-            <button onclick="resetToTitle()" class="w-full mt-4 bg-[var(--ios-green)] text-white text-xs font-bold py-3 rounded-xl hover:opacity-90 active:scale-95 transition-all" data-i18n="menu_back">Вернуться назад</button>
+            <button onclick="resetToTitle()" class="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-3.5 rounded-xl active-scale transition-all shadow-lg shadow-emerald-600/20" data-i18n="menu_back">Вернуться назад</button>
           </div>
         </header>
 
-        <!-- Праздничный виджет -->
-        <div id="holiday-widget" class="hidden pure-glass p-5 rounded-3xl relative overflow-hidden items-center gap-4 transition-all duration-300">
-          <div id="holiday-ribbon" class="hidden absolute inset-y-0 left-0 w-3"></div>
-          <div id="holiday-icon" class="text-4xl select-none">??</div>
-          <div class="flex-1">
-            <h3 id="holiday-title" class="font-bold text-sm lg:text-base">Праздник!</h3>
-            <p id="holiday-text" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Поздравляем!</p>
-          </div>
-        </div>
-
-        <!-- Постоянный информер планового летнего отпуска 2026 -->
-        <div class="pure-glass p-5 rounded-3xl flex items-start gap-4 transition-all duration-300 shadow-sm border border-amber-500/10">
-          <div class="bg-amber-500/10 p-3 rounded-2xl text-2xl select-none">??</div>
+        <!-- Постоянное автономное инфо-меню об отпуске (только в 2026 году!) -->
+        <div id="vacation-banner" class="hidden pure-glass-no-hover p-5 rounded-[2rem] flex items-start gap-4 border border-amber-500/20">
+          <div class="bg-amber-500/10 p-3 rounded-2xl text-2xl select-none">🏖</div>
           <div class="space-y-1">
-            <h3 class="font-bold text-sm" data-i18n="vacation_banner_title">Плановый летний отпуск 2026</h3>
-            <p class="text-[11px] text-amber-600 dark:text-amber-400 font-bold uppercase tracking-wider" data-i18n="vacation_banner_status">Отдел временно закрыт в указанные даты</p>
-            <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed mt-1" data-i18n="vacation_banner_desc">
+            <h3 class="font-bold text-sm text-[var(--text-main)]" data-i18n="vacation_banner_title">Плановый летний отпуск 2026</h3>
+            <p class="text-[10px] text-amber-600 dark:text-amber-400 font-bold uppercase tracking-wider" data-i18n="vacation_banner_status">ОТДЕЛ ВРЕМЕННО ЗАКРЫТ В УКАЗАННЫЕ ДАТЫ</p>
+            <p class="text-xs text-[var(--text-muted)] leading-relaxed mt-2" data-i18n="vacation_banner_desc">
               Уважаемые клиенты! С 06.07.2026 по 19.07.2026 наша мастерская уходит на ежегодные летние каникулы. Мы с радостью продолжим работу в обычном режиме с 20 июля 2026 года!
             </p>
           </div>
         </div>
 
-        <!-- Адрес -->
-        <a href="https://yandex.ru/maps/?text=Тамбов+Мичуринская+141" target="_blank" class="pure-glass p-5 rounded-3xl flex items-center gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300 block shadow-sm">
-          <div class="w-12 h-12 rounded-2xl bg-blue-500 flex items-center justify-center text-xl text-white select-none">??</div>
+        <!-- Календарный Праздничный виджет -->
+        <div id="holiday-widget" class="hidden pure-glass-no-hover p-5 rounded-[2rem] items-center gap-4 border border-emerald-500/10">
+          <div id="holiday-icon" class="text-4xl select-none">🎉</div>
+          <div class="flex-1">
+            <h3 id="holiday-title" class="font-bold text-sm text-[var(--text-main)]">Праздник!</h3>
+            <p id="holiday-text" class="text-xs text-[var(--text-muted)] mt-1 leading-relaxed">Поздравляем!</p>
+          </div>
+        </div>
+
+        <!-- Адрес мастерской (Интерактивная карта) -->
+        <a href="https://yandex.ru/maps/?text=Тамбов+Мичуринская+141" target="_blank" class="pure-glass p-5 rounded-[2rem] flex items-center gap-4 block border border-white/20">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-xl shadow-lg shadow-emerald-600/20 select-none">📍</div>
           <div>
-            <h3 class="font-bold text-sm" data-i18n="address_city">г. Тамбов, ул. Мичуринская 141</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="address_desc">Транзит, 2 ряд</p>
+            <h3 class="font-bold text-sm text-[var(--text-main)]" data-i18n="address_city">г. Тамбов, ул. Мичуринская 141</h3>
+            <p class="text-xs text-[var(--text-muted)] mt-1 font-semibold" data-i18n="address_desc">Транзит, 2 ряд</p>
           </div>
         </a>
 
-        <!-- Блок Связь с мастером (ЗАБЛОКИРОВАН МАТОВЫМ СТЕКЛОМ) -->
-        <div class="relative rounded-3xl overflow-hidden shadow-sm">
-          
-          <!-- Фоновый контент контактов (размыт и не кликабелен) -->
-          <div class="pure-glass p-5 space-y-4 filter blur-[2px] pointer-events-none select-none">
-            <h2 class="text-lg font-bold tracking-tight mb-3">Связь с мастером</h2>
-            <div class="space-y-3">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-green-500/15 flex items-center justify-center text-lg">??</div>
-                <div>
-                  <p class="text-xs font-bold">Телефон</p>
-                  <p class="text-[11px] text-slate-400">+7 (902) 724-60-61</p>
-                </div>
+        <!-- Контакты мастеров -->
+        <section class="space-y-3">
+          <h2 class="text-xs font-black uppercase tracking-widest text-[var(--text-muted)] pl-2" data-i18n="contacts_title font-bold">Связь с мастером</h2>
+          <div class="pure-glass-no-hover p-2 rounded-[2rem] space-y-1 border border-white/10">
+            
+            <a href="tel:89027246061" class="flex items-center gap-4 p-3 hover:bg-emerald-500/5 rounded-2xl transition-colors active-scale">
+              <div class="w-10 h-10 rounded-[14px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg shadow-sm">📞</div>
+              <div class="flex-1">
+                <p class="text-[10px] font-black uppercase text-[var(--text-muted)] tracking-wider" data-i18n="phone">Телефон</p>
+                <p class="text-sm font-extrabold text-[var(--text-main)] mt-0.5">+7 (902) 724-60-61</p>
               </div>
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-blue-500/15 flex items-center justify-center text-lg">??</div>
-                <div>
-                  <p class="text-xs font-bold">Telegram канал</p>
-                  <p class="text-[11px] text-slate-400">Наши новости</p>
-                </div>
+            </a>
+            
+            <a href="https://t.me/ARTSANDCRAFTING" target="_blank" class="flex items-center gap-4 p-3 hover:bg-sky-500/5 rounded-2xl transition-colors active-scale">
+              <div class="w-10 h-10 rounded-[14px] bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg shadow-sm">✈️</div>
+              <div class="flex-1">
+                <p class="text-[10px] font-black uppercase text-[var(--text-muted)] tracking-wider" data-i18n="tg_title">Telegram канал</p>
+                <p class="text-sm font-extrabold text-[var(--text-main)] mt-0.5" data-i18n="tg_desc">Наши новости</p>
               </div>
-            </div>
-          </div>
+            </a>
+            
+            <a href="https://max.ru/join/6vA9eQ-0nmP55CTnB5MfnYQ4zmW253WY_fukBZuK5lU" target="_blank" class="flex items-center gap-4 p-3 hover:bg-indigo-500/5 rounded-2xl transition-colors active-scale">
+              <div class="w-10 h-10 rounded-[14px] bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg shadow-sm">🔗</div>
+              <div class="flex-1">
+                <p class="text-[10px] font-black uppercase text-[var(--text-muted)] tracking-wider" data-i18n="max_title">MAX канал</p>
+                <p class="text-sm font-extrabold text-[var(--text-main)] mt-0.5" data-i18n="max_desc">Присоединиться</p>
+              </div>
+            </a>
 
-          <!-- Матовая заглушка блокировки обновлений -->
-          <div class="absolute inset-0 bg-slate-100/40 dark:bg-slate-900/45 backdrop-blur-[12px] flex flex-col items-center justify-center p-6 text-center z-10">
-            <div class="animate-spin text-2xl text-slate-700 dark:text-white select-none mb-3">
-              <svg class="w-8 h-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-            </div>
-            <h3 class="font-extrabold text-sm text-slate-800 dark:text-white uppercase tracking-wider" data-i18n="contacts_locked_title">Идут обновления, подождите.</h3>
-            <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-1 uppercase font-bold tracking-widest" data-i18n="contacts_locked_desc">Раздел временно заблокирован</p>
           </div>
-
-        </div>
+        </section>
 
       </div>
 
-      <!-- ПРАВАЯ КОЛОНКА (Услуги, Товары) -->
+      <!-- Правая колонка: Сетка услуг и Галерея товаров -->
       <div class="lg:col-span-7 space-y-6">
         
-        <div class="space-y-4">
-          <h2 class="text-xl lg:text-2xl font-black tracking-tight" data-i18n="services_title">Что мы делаем</h2>
-          
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Сетка услуг (Ультра-чистое стекло) -->
+        <section class="space-y-3">
+          <h2 class="text-xs font-black uppercase tracking-widest text-[var(--text-muted)] pl-2" data-i18n="services_title">Что мы делаем</h2>
+          <div class="grid grid-cols-2 gap-4">
             
-            <div class="pure-glass p-5 rounded-3xl flex flex-col justify-between min-h-[140px] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-sm">
-              <span class="text-3xl select-none">??</span>
+            <div class="pure-glass p-5 rounded-[2rem] flex flex-col justify-between min-h-[140px] cursor-pointer group border border-white/20">
+              <span class="text-3xl mb-4 select-none group-hover:scale-110 transition-transform duration-300 origin-left">⚙️</span>
               <div>
-                <h4 class="font-bold text-xs text-slate-400 uppercase tracking-wide" data-i18n="srv1_name">Замена бегунка</h4>
-                <p class="text-lg lg:text-xl font-extrabold text-[var(--ios-green)] mt-1"><span data-i18n="from">от</span> 150?</p>
+                <h4 class="font-bold text-xs text-[var(--text-muted)] uppercase tracking-wider" data-i18n="srv1_name">Замена бегунка</h4>
+                <p class="text-lg font-black text-emerald-600 dark:text-emerald-400 mt-1"><span class="text-xs font-semibold text-[var(--text-muted)]" data-i18n="from">от</span> 150₽</p>
               </div>
             </div>
 
-            <div class="pure-glass p-5 rounded-3xl flex flex-col justify-between min-h-[140px] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-sm">
-              <span class="text-3xl select-none">??</span>
+            <div class="pure-glass p-5 rounded-[2rem] flex flex-col justify-between min-h-[140px] cursor-pointer group border border-white/20">
+              <span class="text-3xl mb-4 select-none group-hover:scale-110 transition-transform duration-300 origin-left">🪡</span>
               <div>
-                <h4 class="font-bold text-xs text-slate-400 uppercase tracking-wide" data-i18n="srv2_name">Замена молнии</h4>
-                <p class="text-lg lg:text-xl font-extrabold text-[var(--ios-green)] mt-1"><span data-i18n="from">от</span> 450?</p>
+                <h4 class="font-bold text-xs text-[var(--text-muted)] uppercase tracking-wider" data-i18n="srv2_name">Замена молнии</h4>
+                <p class="text-lg font-black text-emerald-600 dark:text-emerald-400 mt-1"><span class="text-xs font-semibold text-[var(--text-muted)]" data-i18n="from">от</span> 450₽</p>
               </div>
             </div>
 
-            <div class="pure-glass p-5 rounded-3xl flex flex-col justify-between min-h-[140px] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-sm">
-              <span class="text-3xl select-none">??</span>
+            <div class="pure-glass p-5 rounded-[2rem] flex flex-col justify-between min-h-[140px] cursor-pointer group border border-white/20">
+              <span class="text-3xl mb-4 select-none group-hover:scale-110 transition-transform duration-300 origin-left">🧥</span>
               <div>
-                <h4 class="font-bold text-xs text-slate-400 uppercase tracking-wide" data-i18n="srv3_name">Ремонт кожи и меха</h4>
-                <p class="text-lg lg:text-xl font-extrabold text-[var(--ios-green)] mt-1"><span data-i18n="from">от</span> 500?</p>
+                <h4 class="font-bold text-xs text-[var(--text-muted)] uppercase tracking-wider" data-i18n="srv3_name">Ремонт кожи и меха</h4>
+                <p class="text-lg font-black text-emerald-600 dark:text-emerald-400 mt-1"><span class="text-xs font-semibold text-[var(--text-muted)]" data-i18n="from">от</span> 500₽</p>
               </div>
             </div>
 
-            <div class="pure-glass p-5 rounded-3xl flex flex-col justify-between min-h-[140px] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-sm">
-              <span class="text-3xl select-none">??</span>
+            <div class="pure-glass p-5 rounded-[2rem] flex flex-col justify-between min-h-[140px] cursor-pointer group border border-white/20">
+              <span class="text-3xl mb-4 select-none group-hover:scale-110 transition-transform duration-300 origin-left">📐</span>
               <div>
-                <h4 class="font-bold text-xs text-slate-400 uppercase tracking-wide" data-i18n="srv4_name">Подшив брюк/джинс</h4>
-                <p class="text-lg lg:text-xl font-extrabold text-[var(--ios-green)] mt-1"><span data-i18n="from">от</span> 400?</p>
+                <h4 class="font-bold text-xs text-[var(--text-muted)] uppercase tracking-wider" data-i18n="srv4_name">Подшив брюк/джинс</h4>
+                <p class="text-lg font-black text-emerald-600 dark:text-emerald-400 mt-1"><span class="text-xs font-semibold text-[var(--text-muted)]" data-i18n="from">от</span> 400₽</p>
               </div>
             </div>
 
           </div>
-        </div>
+        </section>
 
-        <!-- Наш товар -->
-        <div class="space-y-4">
-          <h2 class="text-xl lg:text-2xl font-black tracking-tight" data-i18n="goods_title">Наш товар, который можно купить:</h2>
-          <div class="grid grid-cols-3 gap-2 rounded-3xl overflow-hidden pure-glass p-2 shadow-sm">
-            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/0zRYN9T3/image.jpg" alt="Товар 1">
-            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/jw5N12fd/image.jpg" alt="Товар 2">
-            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/300GKqn3/image.jpg" alt="Товар 3">
-            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/Rq2fPMZn/image.jpg" alt="Товар 4">
-            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/Lq4Zq5NW/image.jpg" alt="Товар 5">
-            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/VrdrRTyD/image.jpg" alt="Товар 6">
-            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/6T444DLS/image.jpg" alt="Товар 7">
-            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/zy8yM3Z5/image.jpg" alt="Товар 8">
-            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/tZKTz4t8/image.jpg" alt="Товар 9">
+        <!-- Галерея товаров -->
+        <section class="space-y-3">
+          <div class="flex items-center justify-between pl-2">
+            <h2 class="text-xs font-black uppercase tracking-widest text-[var(--text-muted)]" data-i18n="goods_title">Наш товар в продаже</h2>
           </div>
-        </div>
+          <div class="pure-glass-no-hover p-2.5 rounded-[2.5rem] border border-white/20 shadow-inner">
+            <div class="grid grid-cols-3 gap-3">
+              <img class="w-full aspect-square object-cover rounded-2xl transition-all duration-500 hover:scale-[1.04] hover:shadow-md" src="https://i.postimg.cc/0zRYN9T3/image.jpg" alt="Товар">
+              <img class="w-full aspect-square object-cover rounded-2xl transition-all duration-500 hover:scale-[1.04] hover:shadow-md" src="https://i.postimg.cc/jw5N12fd/image.jpg" alt="Товар">
+              <img class="w-full aspect-square object-cover rounded-2xl transition-all duration-500 hover:scale-[1.04] hover:shadow-md" src="https://i.postimg.cc/300GKqn3/image.jpg" alt="Товар">
+              <img class="w-full aspect-square object-cover rounded-2xl transition-all duration-500 hover:scale-[1.04] hover:shadow-md" src="https://i.postimg.cc/Rq2fPMZn/image.jpg" alt="Товар">
+              <img class="w-full aspect-square object-cover rounded-2xl transition-all duration-500 hover:scale-[1.04] hover:shadow-md" src="https://i.postimg.cc/Lq4Zq5NW/image.jpg" alt="Товар">
+              <img class="w-full aspect-square object-cover rounded-2xl transition-all duration-500 hover:scale-[1.04] hover:shadow-md" src="https://i.postimg.cc/VrdrRTyD/image.jpg" alt="Товар">
+              <img class="w-full aspect-square object-cover rounded-2xl transition-all duration-500 hover:scale-[1.04] hover:shadow-md" src="https://i.postimg.cc/6T444DLS/image.jpg" alt="Товар">
+              <img class="w-full aspect-square object-cover rounded-2xl transition-all duration-500 hover:scale-[1.04] hover:shadow-md" src="https://i.postimg.cc/zy8yM3Z5/image.jpg" alt="Товар">
+              <img class="w-full aspect-square object-cover rounded-2xl transition-all duration-500 hover:scale-[1.04] hover:shadow-md" src="https://i.postimg.cc/tZKTz4t8/image.jpg" alt="Товар">
+            </div>
+          </div>
+        </section>
 
       </div>
 
     </div>
 
-    <!-- Футер -->
-    <footer class="mt-16 text-center text-[11px] text-slate-400 font-bold uppercase tracking-widest" data-i18n="footer">
+    <!-- Футер страницы -->
+    <footer class="text-center text-[10px] text-[var(--text-muted)] font-bold uppercase tracking-widest pt-12 pb-4" data-i18n="footer">
       АРТС&КРАФТИНГ • Тамбов • Мичуринская 141
     </footer>
   </main>
 
-  <!-- ЭКРАН СИСТЕМНОГО ОБНОВЛЕНИЯ (Overlay при входе) -->
-  <div id="update-screen" class="fixed inset-0 z-[99999] flex items-center justify-center bg-slate-100/30 dark:bg-slate-900/40 backdrop-blur-[24px] px-4 transition-all duration-700 opacity-100">
-    <div class="max-w-[420px] w-full pure-glass rounded-[32px] p-8 text-center shadow-2xl border border-white/25 dark:border-white/10 flex flex-col items-center">
-      
-      <!-- Крутящийся спиннер iOS -->
-      <div class="w-16 h-16 rounded-full flex items-center justify-center bg-black/5 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-inner mb-6 relative">
-        <svg class="animate-spin h-8 w-8 text-[var(--text-main)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle>
-          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-        </svg>
-      </div>
-
-      <!-- Текст обновления -->
-      <h2 class="text-xl font-extrabold tracking-tight text-[var(--text-main)] mb-3" data-i18n="modal_title">Системные работы</h2>
-      <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-6" data-i18n="modal_desc">
-        На сервере мастерской производится развертывание обновлений интерфейса Pure Liquid Glass 2026. Сайт функционирует в режиме ограниченного превью.
-      </p>
-
-      <!-- Индикатор UPDATE с точками -->
-      <div class="pure-glass px-4 py-2 rounded-full text-xs font-bold text-amber-600 dark:text-amber-400 tracking-wider mb-8 flex items-center gap-1">
-        <span>?? UPDATE</span><span id="update-dots-modal">...</span>
-      </div>
-
-      <!-- Кнопка Хорошо -->
-      <button onclick="dismissUpdateScreen()" class="w-full bg-slate-900 dark:bg-white hover:opacity-95 text-white dark:text-black py-4 rounded-2xl text-sm font-bold shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2">
-        <span data-i18n="modal_ok">Хорошо</span>
-      </button>
-
-    </div>
-  </div>
-
-  <!-- СЕКРЕТНАЯ ПАНЕЛЬ ТЕСТИРОВАНИЯ ПРАЗДНИКОВ -->
-  <div id="test-panel" class="fixed bottom-0 left-0 right-0 z-[200] translate-y-full transition-transform duration-500 pure-glass border-t border-white/30 dark:border-white/10 rounded-t-[32px] p-6 shadow-2xl">
-    <div class="max-w-[500px] mx-auto space-y-4">
-      <div class="flex items-center justify-between border-b border-[var(--divider)] pb-2">
-        <h3 class="font-extrabold text-xs uppercase tracking-wider text-slate-500">Секретный Пульт Тестирования</h3>
-        <button onclick="toggleTestPanel(false)" class="text-xs bg-black/10 dark:bg-white/10 px-2.5 py-1 rounded-full font-bold">Закрыть</button>
-      </div>
-      <p class="text-[11px] text-slate-400">Протестируйте сезонные анимации и эффекты заднего фона в обход текущей системной даты:</p>
-      <div class="grid grid-cols-2 gap-2">
-        <button onclick="forceSeason('ny')" class="bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-bold py-2.5 rounded-xl border border-blue-500/15">?? Новый Год</button>
-        <button onclick="forceSeason('may1')" class="bg-pink-500/10 hover:bg-pink-500/20 text-pink-600 dark:text-pink-400 text-xs font-bold py-2.5 rounded-xl border border-pink-500/15">?? 1 Мая</button>
-        <button onclick="forceSeason('may9')" class="bg-orange-500/10 hover:bg-orange-500/20 text-orange-600 dark:text-orange-400 text-xs font-bold py-2.5 rounded-xl border border-orange-500/15">??? 9 Мая</button>
-        <button onclick="forceSeason('bday')" class="bg-purple-500/10 hover:bg-purple-500/20 text-purple-600 dark:text-purple-400 text-xs font-bold py-2.5 rounded-xl border border-purple-500/15">?? День Рождения</button>
-        <button onclick="forceSeason('vac')" class="bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 text-xs font-bold py-2.5 rounded-xl border border-amber-500/15">??? Отпуск</button>
-        <button onclick="resetSeason()" class="col-span-2 bg-slate-500/10 hover:bg-slate-500/20 text-[var(--text-main)] text-xs font-bold py-2.5 rounded-xl border border-slate-500/15">?? Сбросить к системной дате</button>
-      </div>
-    </div>
-  </div>
-
   <script>
+    // Инициализация словарей перевода на три языка (RU, EN, KZ)
     const dict = {
       ru: {
         subtitle: "Ремонт одежды — честно и в срок",
         address_city: "г. Тамбов, ул. Мичуринская 141",
         address_desc: "Транзит, 2 ряд",
         services_title: "Что мы делаем",
-        srv1_name: "Замена бегунка",
-        srv2_name: "Замена молнии",
-        srv3_name: "Ремонт кожи и меха",
-        srv4_name: "Подшив брюк/джинс",
+        srv1_name: "Замена бегунка", srv2_name: "Замена молнии", srv3_name: "Ремонт кожи и меха", srv4_name: "Подшив брюк/джинс",
         from: "от",
+        contacts_title: "Связь с мастером",
+        phone: "Телефон", tg_title: "Telegram канал", tg_desc: "Наши новости", max_title: "MAX канал", max_desc: "Присоединиться",
         goods_title: "Наш товар, который можно купить:",
         footer: "АРТС&КРАФТИНГ • Тамбов • Мичуринская 141",
-        status_loading: "Определяем статус...",
-        status_open: "Мастерская работает",
-        status_closed_until: "Ждем вас с 9:00",
-        status_weekend: "Сегодня выходной",
-        status_short: "Сокращенный день до 15:00",
-        status_closed_tmr: "Закрыто до завтра",
-        status_ny: "Новогодние каникулы",
-        status_victory: "С Днем Победы! (Выходной)",
-        status_vacation: "Отпуск",
-        timer_open: "Мы открыты!",
-        timer_close_until: "До закрытия:",
-        timer_until: "До открытия:",
-        timer_click: "(нажмите еще раз)",
+        status_loading: "Определяем статус...", status_open: "Мастерская работает", status_closed_until: "Ждем вас с 9:00",
+        status_weekend: "Сегодня выходной", status_short: "Сокращенный день до 15:00", status_closed_tmr: "Закрыто до завтра",
+        status_ny: "Новогодние каникулы", status_victory: "С Днем Победы! (Выходной)", status_vacation: "Отпуск",
+        timer_open: "Мы открыты!", timer_close_until: "До закрытия:", timer_until: "До открытия:", timer_click: "(нажмите еще раз)",
         timer_d: "дн", timer_h: "ч", timer_m: "мин", timer_s: "сек",
-        menu_info: "Информация о магазине",
-        menu_founded: "Основан:", menu_date: "22 февраля 2022 г. в 12:08",
-        menu_history: "История:", menu_history_text: "Был создан на 2 ряду напротив 'Принт плюс', и потом был перекинут на второй ряд около фотомагазина Kodak.",
-        menu_manager: "Управляющая:", menu_manager_name: "Ксения Бондаренко Сергеевна",
-        menu_back: "Вернуться назад",
-        theme_dark: "Тёмная тема",
-        theme_light: "Светлая тема",
-        island_title: "Что изменилось:",
-        upd_1: "Стеклянный интерфейс Pure Liquid Glass",
-        upd_2: "Автономный информер летнего отпуска 2026",
-        upd_3: "Раздел контактов временно заблокирован",
-        upd_4: "Исправлена логика запуска Dynamic Island",
-        modal_title: "Системные работы",
-        modal_desc: "На сервере мастерской производится развертывание обновлений интерфейса Pure Liquid Glass 2026. Сайт функционирует в режиме ограниченного превью.",
-        modal_ok: "Хорошо",
-        vacation_banner_title: "Плановый летний отпуск 2026",
-        vacation_banner_status: "Отдел временно закрыт в указанные даты",
-        vacation_banner_desc: "Уважаемые клиенты! С 06.07.2026 по 19.07.2026 наша мастерская уходит на ежегодные летние каникулы. Мы с радостью продолжим работу в обычном режиме с 20 июля 2026 года!",
-        contacts_locked_title: "Идут обновления, подождите.",
-        contacts_locked_desc: "Раздел временно заблокирован"
+        menu_info: "Информация о магазине", menu_date: "22 февраля 2022 г. в 12:08",
+        menu_history_text: "Был создан на 2 ряду напротив 'Принт плюс', и потом был перекинут на второй ряд около фотомагазина Kodak.",
+        menu_manager_name: "Ксения Бондаренко Сергеевна", menu_back: "Вернуться назад",
+        island_title: "Нововведения:",
+        upd_1: "Чистейшее жидкое стекло", upd_2: "Мобильная оптимизация под ПК", upd_3: "Тончайшие кристальные рамки", upd_4: "Микро-акцентная палитра",
+        vacation_banner_title: "Плановый летний отпуск 2026", vacation_banner_status: "ОТДЕЛ ВРЕМЕННО ЗАКРЫТ В УКАЗАННЫЕ ДАТЫ",
+        vacation_banner_desc: "Уважаемые клиенты! С 06.07.2026 по 19.07.2026 наша мастерская уходит на ежегодные летние каникулы. Мы с радостью продолжим работу в обычном режиме с 20 июля 2026 года!"
       },
       en: {
         subtitle: "Clothing repair — honest and on time",
-        address_city: "Tambov, Michurinskaya 141",
-        address_desc: "Transit, 2nd row",
+        address_city: "Tambov, Michurinskaya 141", address_desc: "Transit, 2nd row",
         services_title: "What we do",
-        srv1_name: "Slider replacement",
-        srv2_name: "Zipper replacement",
-        srv3_name: "Leather & fur repair",
-        srv4_name: "Pants/jeans hemming",
+        srv1_name: "Slider replacement", srv2_name: "Zipper replacement", srv3_name: "Leather & fur repair", srv4_name: "Pants hemming",
         from: "from",
+        contacts_title: "Contact the master",
+        phone: "Phone", tg_title: "Telegram channel", tg_desc: "Our news", max_title: "MAX channel", max_desc: "Join us",
         goods_title: "Our goods available for purchase:",
         footer: "ARTS&CRAFTING • Tambov • Michurinskaya 141",
-        status_loading: "Checking status...",
-        status_open: "Workshop is open",
-        status_closed_until: "Waiting for you from 9:00",
-        status_weekend: "Closed today",
-        status_short: "Short day until 15:00",
-        status_closed_tmr: "Closed until tomorrow",
-        status_ny: "New Year holidays",
-        status_victory: "Happy Victory Day! (Closed)",
-        status_vacation: "Vacation",
-        timer_open: "We are open!",
-        timer_close_until: "Closing in:",
-        timer_until: "Opening in:",
-        timer_click: "(tap again)",
-        timer_d: "d", timer_h: "h", timer_m: "min", timer_s: "sec",
-        menu_info: "Store Information",
-        menu_founded: "Founded:", menu_date: "February 22, 2022 at 12:08",
-        menu_history: "History:", menu_history_text: "Founded in the 2nd row opposite 'Print Plus', then moved to the 2nd row near Kodak photo store.",
-        menu_manager: "Manager:", menu_manager_name: "Ksenia Bondarenko Sergeevna",
-        menu_back: "Go back",
-        theme_dark: "Dark Theme",
-        theme_light: "Light Theme",
+        status_loading: "Checking...", status_open: "Workshop is open", status_closed_until: "Open from 9:00",
+        status_weekend: "Closed today", status_short: "Short day until 15:00", status_closed_tmr: "Closed until tomorrow",
+        status_ny: "New Year holidays", status_victory: "Victory Day! (Closed)", status_vacation: "Vacation",
+        timer_open: "We are open!", timer_close_until: "Closing in:", timer_until: "Opening in:", timer_click: "(tap again)",
+        timer_d: "d", timer_h: "h", timer_m: "m", timer_s: "s",
+        menu_info: "Store Information", menu_date: "February 22, 2022 at 12:08",
+        menu_history_text: "Founded opposite 'Print Plus', then moved near Kodak photo store.",
+        menu_manager_name: "Ksenia Bondarenko", menu_back: "Go back",
         island_title: "What's new:",
-        upd_1: "Pure Liquid Glass premium interface design",
-        upd_2: "Autonomous vacation informer for July 2026",
-        upd_3: "Contact channels are locked during maintenance",
-        upd_4: "Patched Dynamic Island launch logic",
-        modal_title: "System Maintenance",
-        modal_desc: "Pure Liquid Glass 2026 UI updates deployment is currently in progress. Website is running in restricted preview mode.",
-        modal_ok: "Got it",
-        vacation_banner_title: "Planned Summer Vacation 2026",
-        vacation_banner_status: "Store is temporarily closed during these dates",
-        vacation_banner_desc: "Dear customers! From 06.07.2026 to 19.07.2026 our workshop will be closed for annual summer holidays. We look forward to seeing you back on July 20, 2026!",
-        contacts_locked_title: "Updates in progress, please wait.",
-        contacts_locked_desc: "Section temporarily locked"
+        upd_1: "Pure liquid glass theme", upd_2: "Mobile optimization on PC", upd_3: "Ultra-thin polished frames", upd_4: "Accented color palette",
+        vacation_banner_title: "Planned Summer Vacation 2026", vacation_banner_status: "STORE TEMPORARILY CLOSED IN THESE DATES",
+        vacation_banner_desc: "Dear customers! From 06.07.2026 to 19.07.2026 we are on our annual summer holiday. We will happily resume work on July 20, 2026!"
       },
       kz: {
-        subtitle: "Киім ж?ндеу — адал ж?не уа?ытында",
-        address_city: "Тамбов ?., Мичуринская 141",
-        address_desc: "Транзит СО, 2-?атар",
+        subtitle: "Киім жөндеу — адал және уақытында",
+        address_city: "Тамбов қ., Мичуринская 141", address_desc: "Транзит СО, 2-қатар",
         services_title: "Біз не істейміз",
-        srv1_name: "Ж?гіртпені ауыстыру",
-        srv2_name: "Сыдырманы ауыстыру",
-        srv3_name: "Был?ары ж?не ?лбірді ж?ндеу",
-        srv4_name: "Шалбар/джинсы тігу",
+        srv1_name: "Жүгіртпені ауыстыру", srv2_name: "Сыдырманы ауыстыру", srv3_name: "Былғары жөндеу", srv4_name: "Шалбар тігу",
         from: "бастап",
-        goods_title: "Сатып алу?а болатын бізді? тауар:",
-        footer: "АРТС&КРАФТИНГ • Тамбов • Мичуринская 141",
-        status_loading: "К?йді тексеру...",
-        status_open: "Шеберхана ашы?",
-        status_closed_until: "Сізді 9:00-ден к?теміз",
-        status_weekend: "Б?гін демалыс",
-        status_short: "15:00-ге дейін ?ыс?артыл?ан к?н",
-        status_closed_tmr: "Ерте?ге дейін жабы?",
-        status_ny: "Жа?а жылды? демалыс",
-        status_victory: "Же?іс к?німен! (Демалыс)",
-        status_vacation: "Демалыс",
-        timer_open: "Біз ашы?пыз!",
-        timer_close_until: "Жабылуына:",
-        timer_until: "Ашылуына:",
-        timer_click: "(та?ы басы?ыз)",
-        timer_d: "к?н", timer_h: "са?", timer_m: "мин", timer_s: "сек",
-        menu_info: "Д?кен туралы а?парат",
-        menu_founded: "??рыл?ан:", menu_date: "22 а?пан 2022 ж. 12:08",
-        menu_history: "Тарихы:", menu_history_text: "'Принт плюс' ?арама-?арсы 2-ші ?атарда ??рыл?ан, содан кейін Kodak д?кеніні? жанында?ы 2-ші ?атар?а ауыстырыл?ан.",
-        menu_manager: "Бас?арушы:", menu_manager_name: "Ксения Бондаренко Сергеевна",
-        menu_back: "Арт?а оралу",
-        theme_dark: "?ара??ы та?ырып",
-        theme_light: "Жары? та?ырып",
-        island_title: "Не ?згерді:",
-        upd_1: "Pure Liquid Glass премиум интерфейсі",
-        upd_2: "2026 жыл?ы жаз?ы демалыс автономды информері",
-        upd_3: "Байланыс арналары жа?арту кезінде уа?ытша жабы?",
-        upd_4: "Dynamic Island іске ?осу логикасы т?зетілді",
-        modal_title: "Ж?йелік ж?мыстар",
-        modal_desc: "Шеберхана серверінде Pure Liquid Glass 2026 жа?а интерфейс жа?артулары жасалуда. Сайт шектеулі режимде ж?мыс істейді.",
-        modal_ok: "Т?сінікті",
-        vacation_banner_title: "Жоспарлан?ан жаз?ы демалыс 2026",
-        vacation_banner_status: "Б?лім к?рсетілген к?ндерде уа?ытша жабы?",
-        vacation_banner_desc: "??рметті т?тынушылар! 06.07.2026 бастап 19.07.2026 аралы?ында бізді? шеберханамыз жаз?ы демалыс?а кетеді. Сізді 20 шілдеден бастап к?теміз!",
-        contacts_locked_title: "Жа?артулар ж?руде, к?те т?ры?ыз.",
-        contacts_locked_desc: "Б?лім уа?ытша б??аттал?ан"
+        contacts_title: "Шебермен байланыс",
+        phone: "Телефон", tg_title: "Telegram арнасы", tg_desc: "Жаңалықтар", max_title: "MAX арнасы", max_desc: "Қосылу",
+        goods_title: "Сатылымдағы тауар:",
+        footer: "АРТС&КРАФТИНГ • Тамбов",
+        status_loading: "Күйді тексеру...", status_open: "Шеберхана ашық", status_closed_until: "9:00-ден күтеміз",
+        status_weekend: "Бүгін демалыс", status_short: "15:00-ге дейін", status_closed_tmr: "Ертеңге дейін жабық",
+        status_ny: "Жаңа жылдық демалыс", status_victory: "Жеңіс күні! (Демалыс)", status_vacation: "Демалыс",
+        timer_open: "Біз ашықпыз!", timer_close_until: "Жабылуына:", timer_until: "Ашылуына:", timer_click: "(тағы басыңыз)",
+        timer_d: "күн", timer_h: "сағ", timer_m: "мин", timer_s: "сек",
+        menu_info: "Дүкен ақпараты", menu_date: "22 ақпан 2022 ж.",
+        menu_history_text: "'Принт плюс' қарама-қарсы құрылған, содан кейін Kodak жанына ауыстырылған.",
+        menu_manager_name: "Ксения Бондаренко", menu_back: "Артқа оралу",
+        island_title: "Жаңалықтар:",
+        upd_1: "Таза сұйық шыны", upd_2: "ДК-дегі мобильді нұсқа", upd_3: "Жіңішке тегістелген жақтау", upd_4: "Микроакцентті палитра",
+        vacation_banner_title: "Жазғы демалыс 2026", vacation_banner_status: "ШЕБЕРХАНА ДЕМЫЛЫСҚА БАЙЛАНЫСТЫ ЖАБЫҚ",
+        vacation_banner_desc: "Құрметті тұтынушылар! 06.07.2026 жылдан 19.07.2026 жылға дейін шеберхана жазғы демалысқа кетеді. 20 шілдеден бастап жұмысымызды жалғастырамыз!"
       }
     };
 
     let currentLang = 'ru';
     let isDarkMode = false;
-    let islandClicks = 0;
-    let forcedSeasonMode = null;
     let titleDissolved = false;
+    let timerInterval = null;
 
-    // Закрытие экрана обновления
-    function dismissUpdateScreen() {
-      const overlay = document.getElementById('update-screen');
-      overlay.classList.add('opacity-0', 'scale-95');
-      setTimeout(() => {
-        overlay.style.display = 'none';
-      }, 700);
+    // Переключатель тем оформления (Светлая / Темная)
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      document.body.classList.toggle('dark-theme', isDarkMode);
+      const emoji = document.getElementById('theme-emoji');
+      if (emoji) {
+        emoji.style.transform = 'scale(0) rotate(-180deg)';
+        setTimeout(() => {
+          emoji.innerText = isDarkMode ? '☀️' : '🌙';
+          emoji.style.transform = 'scale(1) rotate(0deg)';
+        }, 150);
+      }
+      document.getElementById('lang-menu').classList.remove('open');
     }
 
-    // Анимация точек в значке UPDATE
-    function animateUpdateDots() {
-      const dotElements = [
-        document.getElementById('update-dots-header'),
-        document.getElementById('update-dots-modal')
-      ];
-      let state = 0;
-      setInterval(() => {
-        state = (state + 1) % 4;
-        let dots = '.'.repeat(state);
-        if (state === 0) dots = '.';
-        dotElements.forEach(el => {
-          if (el) el.innerText = dots;
-        });
-      }, 500);
-    }
-
-    // Выбор языков
+    // Выпадающее меню переключения языков
     function toggleLangMenu() {
       const menu = document.getElementById('lang-menu');
       menu.classList.toggle('opacity-0');
@@ -661,34 +574,25 @@
       menu.classList.toggle('scale-95');
     }
 
-    function toggleTheme() {
-      isDarkMode = !isDarkMode;
-      document.body.classList.toggle('dark-theme', isDarkMode);
-      
-      const t = dict[currentLang];
-      document.getElementById('theme-emoji').innerText = isDarkMode ? '??' : '??';
-      document.getElementById('theme-label').innerText = isDarkMode ? t.theme_light : t.theme_dark;
-      toggleLangMenu();
-    }
-
+    // Смена языка
     function setLang(lang) {
       currentLang = lang;
-      const icons = { ru: "????", en: "????", kz: "????" };
+      const icons = { ru: "🇷🇺", en: "🇬🇧", kz: "🇰🇿" };
       const texts = { ru: "RU", en: "EN", kz: "KZ" };
-
       document.getElementById('lang-icon').innerText = icons[lang];
       document.getElementById('lang-text').innerText = texts[lang];
-      toggleLangMenu();
+      
+      const menu = document.getElementById('lang-menu');
+      menu.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
 
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (dict[lang][key]) el.innerText = dict[lang][key];
       });
-
-      document.getElementById('theme-label').innerText = isDarkMode ? dict[lang].theme_light : dict[lang].theme_dark;
       updateHolidaysAndStatus();
     }
 
+    // Клик мимо языкового меню для автоматического скрытия
     document.addEventListener('click', (e) => {
       const langBtn = document.getElementById('lang-btn');
       const langMenu = document.getElementById('lang-menu');
@@ -697,36 +601,29 @@
       }
     });
 
-    // Логика Dynamic Island и статусных календарей
+    // Интерактивное открытие Dynamic Island
     const island = document.getElementById('dynamic-island');
     island.addEventListener('click', () => {
-      islandClicks++;
-      if (islandClicks >= 5) {
-        toggleTestPanel(true);
-        islandClicks = 0;
-      }
-
       const collapsed = document.getElementById('island-collapsed');
       const expanded = document.getElementById('island-expanded');
 
       if (expanded.classList.contains('hidden')) {
-        // Раскрытие острова
         const now = new Date();
-        const msk = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (3 * 3600000));
         const dateOptions = { month: 'long', day: 'numeric', year: 'numeric' };
-        document.getElementById('expanded-date').innerText = msk.toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : (currentLang === 'kz' ? 'kk-KZ' : 'en-US'), dateOptions);
+        document.getElementById('expanded-date').innerText = now.toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : (currentLang === 'kz' ? 'kk-KZ' : 'en-US'), dateOptions);
 
         island.style.width = '300px';
         island.style.height = '180px';
+        island.style.borderRadius = '32px';
         collapsed.classList.add('opacity-0');
         setTimeout(() => {
           collapsed.classList.add('hidden');
           expanded.classList.remove('hidden');
         }, 150);
       } else {
-        // Сжатие острова
-        island.style.width = '200px';
+        island.style.width = '170px';
         island.style.height = '44px';
+        island.style.borderRadius = '24px';
         expanded.classList.add('hidden');
         collapsed.classList.remove('hidden');
         setTimeout(() => {
@@ -735,29 +632,14 @@
       }
     });
 
-    // Секретный пульт
-    function toggleTestPanel(show) {
-      const panel = document.getElementById('test-panel');
-      panel.style.transform = show ? 'translateY(0)' : 'translateY(100%)';
-    }
-
-    function forceSeason(mode) {
-      forcedSeasonMode = mode;
-      updateHolidaysAndStatus();
-    }
-
-    function resetSeason() {
-      forcedSeasonMode = null;
-      updateHolidaysAndStatus();
-    }
-
-    // Расчет дат, статусов и праздников
+    // Проверка праздничных дат и расчет времени работы
     function updateHolidaysAndStatus() {
       const now = new Date();
-      // Вычисляем время по МСК (UTC+3)
+      // Рассчитываем Московское время
       const msk = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (3 * 3600000));
       const t = dict[currentLang];
 
+      let year = msk.getFullYear();
       let month = msk.getMonth();
       let date = msk.getDate();
       let day = msk.getDay();
@@ -765,25 +647,15 @@
       let min = msk.getMinutes();
       let time = hour + min / 60;
 
-      // Если включен режим тестирования на пульте, подменяем системную дату
-      if (forcedSeasonMode) {
-        if (forcedSeasonMode === 'ny') { month = 11; date = 31; day = 4; }
-        else if (forcedSeasonMode === 'may1') { month = 4; date = 1; day = 1; }
-        else if (forcedSeasonMode === 'may9') { month = 4; date = 9; day = 4; }
-        else if (forcedSeasonMode === 'bday') { month = 1; date = 22; day = 2; }
-        else if (forcedSeasonMode === 'vac') { month = 6; date = 10; day = 3; }
-      }
-
       const wWidget = document.getElementById('holiday-widget');
       const wTitle = document.getElementById('holiday-title');
       const wText = document.getElementById('holiday-text');
       const wIcon = document.getElementById('holiday-icon');
-      const wRibbon = document.getElementById('holiday-ribbon');
-      const bgRibbons = document.getElementById('ribbons-bg');
       const waves = document.getElementById('summer-waves');
+      const vBanner = document.getElementById('vacation-banner');
+      const bgRibbons = document.getElementById('ribbons-bg');
 
       wWidget.style.display = 'none';
-      wRibbon.style.display = 'none';
       bgRibbons.style.display = 'none';
       wIcon.style.display = 'block';
 
@@ -791,64 +663,58 @@
       let isHolidayClosed = false;
       let isVacation = false;
 
-      // Летние волны (с 1 июня по 1 сентября: июнь(5), июль(6), август(7))
-      const isSummer = (month >= 5 && month <= 7);
-      if (waves) waves.style.display = isSummer ? 'block' : 'none';
-
-      // 1. Отпуск (6-19 июля)
-      if (month === 6 && date >= 6 && date <= 19) {
+      // Летний отпуск СТРОГО в 2026 году (с 6 по 19 июля)
+      const is2026 = (year === 2026);
+      if (is2026 && month === 6 && date >= 6 && date <= 19) {
         isVacation = true;
       }
 
-      // 2. 9 Мая (с 3 по 10 мая)
+      // Всегда показываем плановый баннер на 2026 год на странице
+      if (vBanner) {
+        vBanner.style.display = is2026 ? 'flex' : 'none';
+      }
+
+      // Летние волны (активны с июня по август включительно)
+      const isSummer = (month >= 5 && month <= 7);
+      if (waves) {
+        waves.style.display = 'block'; // Делаем летние волны яркими и всегда видимыми
+      }
+
+      // Определение праздничных периодов
       if (month === 4 && date >= 3 && date <= 10) {
+        // 9 Мая (День Победы)
         wWidget.style.display = 'flex';
         bgRibbons.style.display = 'block';
-        wRibbon.style.display = 'block';
         wIcon.style.display = 'none';
-        wText.innerText = currentLang === 'ru' ? 'С Днем Великой Победы. Мирного неба над головой!' : (currentLang === 'en' ? 'Happy Victory Day. Peaceful sky above!' : 'Же?іс к?ні ??тты болсын. Аспанымыз ашы? болсын!');
-        
-        if (date < 9) wTitle.innerText = currentLang === 'ru' ? 'С наступающим 9 Мая!' : (currentLang === 'en' ? 'Upcoming May 9th!' : 'Келе жат?ан 9 мамырмен!');
-        else wTitle.innerText = currentLang === 'ru' ? 'С 9 Мая!' : (currentLang === 'en' ? 'Happy May 9th!' : '9 мамыр ??тты болсын!');
-      }
-      
-      // 3. Новый год (26 декабря - 14 января)
-      else if ((month === 11 && date >= 26) || (month === 0 && date <= 14)) {
+        wText.innerText = currentLang === 'ru' ? 'С Днем Великой Победы. Мирного неба над головой!' : (currentLang === 'en' ? 'Happy Victory Day. Peaceful sky!' : 'Жеңіс күні құтты болсын!');
+        wTitle.innerText = date < 9 ? (currentLang === 'ru' ? 'С наступающим 9 Мая!' : 'Upcoming May 9th!') : (currentLang === 'ru' ? 'С 9 Мая!' : 'Happy May 9th!');
+      } else if ((month === 11 && date >= 26) || (month === 0 && date <= 14)) {
+        // Новый Год и Рождество
         wWidget.style.display = 'flex';
-        wIcon.innerText = '??';
-        wText.innerText = currentLang === 'ru' ? 'Желаем счастья, тепла и уюта в новом году!' : (currentLang === 'en' ? 'Wishing you happiness, warmth and comfort in the new year!' : 'Жа?а жылда ба?ыт, жылулы? пен жайлылы? тілейміз!');
-        
-        if (month === 11) wTitle.innerText = currentLang === 'ru' ? 'С наступающим Новым годом!' : (currentLang === 'en' ? 'Happy upcoming New Year!' : 'Келе жат?ан Жа?а жылмен!');
-        else wTitle.innerText = currentLang === 'ru' ? 'С Новым годом!' : (currentLang === 'en' ? 'Happy New Year!' : 'Жа?а жыл ??тты болсын!');
-
-        if (month === 0 && date === 1 && hour >= 0 && hour < 2) particleType = 'snow-gift';
-        else particleType = 'snow';
-
+        wIcon.innerText = '🎄';
+        wText.innerText = currentLang === 'ru' ? 'Желаем счастья, тепла и уюта в новом году!' : (currentLang === 'en' ? 'Warmth and comfort in the New Year!' : 'Жылулық пен жайлылық тілейміз!');
+        wTitle.innerText = month === 11 ? (currentLang === 'ru' ? 'С наступающим Новым годом!' : 'Upcoming New Year!') : (currentLang === 'ru' ? 'С Новым годом!' : 'Happy New Year!');
+        particleType = 'snow';
         if ((month === 11 && date === 31) || (month === 0 && date >= 1 && date <= 4)) isHolidayClosed = true;
-      }
-      
-      // 4. 1 Мая (30 апреля - 2 мая)
-      else if ((month === 3 && date === 30) || (month === 4 && date <= 2)) {
+      } else if ((month === 3 && date === 30) || (month === 4 && date <= 2)) {
+        // Первое Мая
         wWidget.style.display = 'flex';
-        wIcon.innerText = '??';
-        wText.innerText = currentLang === 'ru' ? 'Весеннего настроения, радости и успехов во всех делах!' : (currentLang === 'en' ? 'Spring mood, joy and success in all your endeavors!' : 'К?ктемгі к??іл-к?й, ?уаныш пен барлы? істері?ізге с?ттілік тілейміз!');
+        wIcon.innerText = '🌸';
+        wTitle.innerText = currentLang === 'ru' ? 'С 1 Мая! Мир, Труд, Май!' : 'Happy May 1st!';
+        wText.innerText = currentLang === 'ru' ? 'Весеннего настроения, радости и успехов!' : 'Spring mood and success!';
         particleType = 'flowers';
-        
-        if (month === 3 && date === 30) wTitle.innerText = currentLang === 'ru' ? 'С наступающим 1 Мая!' : (currentLang === 'en' ? 'Upcoming May 1st!' : 'Келе жат?ан 1 мамырмен!');
-        else wTitle.innerText = currentLang === 'ru' ? 'С 1 Мая! Мир, Труд, Май!' : (currentLang === 'en' ? 'Happy May 1st! Peace, Labor, May!' : '1 мамырмен! Бейбітшілік, Е?бек, Мамыр!');
-      }
-      
-      // 5. День Рождения магазина (22 февраля)
-      else if (month === 1 && date === 22) {
+      } else if (month === 1 && date === 22) {
+        // День рождения магазина (22 февраля)
         wWidget.style.display = 'flex';
-        wIcon.innerText = '??';
-        wTitle.innerText = currentLang === 'ru' ? 'С Днём Рождения магазина!' : (currentLang === 'en' ? 'Happy Store Birthday!' : 'Д?кенні? ту?ан к?німен!');
-        wText.innerText = currentLang === 'ru' ? 'Сегодня мы празднуем еще один год работы. Спасибо, что вы с нами!' : (currentLang === 'en' ? 'Today we celebrate another year of work. Thank you for being with us!' : 'Б?гін біз та?ы бір жыл ж?мыс істегенімізді атап ?теміз. Бізбен бірге бол?аны?ыз?а ра?мет!');
+        wIcon.innerText = '🎂';
+        wTitle.innerText = currentLang === 'ru' ? 'С Днём Рождения магазина!' : 'Store Birthday!';
+        wText.innerText = currentLang === 'ru' ? 'Спасибо, что вы с нами!' : 'Thank you for being with us!';
         particleType = 'gifts';
       }
 
       createParticles(particleType);
 
+      // Логика обычного рабочего расписания
       let open = false;
       let statusString = t.status_closed_tmr;
 
@@ -858,12 +724,15 @@
         statusString = t.status_ny;
       } else {
         if (month === 4 && date === 9) {
+          // Сокращенный день на 9 мая
           if (time >= 9 && time < 15) open = true;
           statusString = open ? t.status_short : t.status_closed_tmr;
         } else {
           if (day >= 1 && day <= 5) {
+            // Будни: с 9:00 до 18:00
             if (time >= 9 && time < 18) open = true;
           } else if (day === 6) {
+            // Суббота: с 10:00 до 17:00
             if (time >= 10 && time < 17) open = true;
           }
           statusString = open ? t.status_open : ((day === 0) ? t.status_weekend : t.status_closed_until);
@@ -877,21 +746,19 @@
       const label = document.getElementById('status-text');
 
       if (isVacation) {
-        dot.className = "w-2.5 h-2.5 rounded-full bg-yellow-500 shadow-[0_0_10px_#ffcc00] animate-pulse";
-        label.innerText = statusString;
+        dot.className = "w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_10px_#f59e0b] animate-pulse";
       } else if (isHolidayClosed) {
-        dot.className = "w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_10px_#ff3b30]";
-        label.innerText = statusString;
+        dot.className = "w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_10px_#ef4444]";
       } else if (open) {
-        dot.className = "w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_10px_#34c759] animate-pulse";
-        label.innerText = statusString;
+        dot.className = "w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981] animate-pulse";
       } else {
-        dot.className = "w-2.5 h-2.5 rounded-full bg-slate-500";
-        label.innerText = statusString;
+        dot.className = "w-2.5 h-2.5 rounded-full bg-slate-400";
       }
+      label.innerText = statusString;
     }
 
-    // Логика фоновых праздничных частиц
+    // Генерация сезонных анимированных частиц на фоне
+    let currentParticleType = null;
     function createParticles(type) {
       if (currentParticleType === type) return;
       currentParticleType = type;
@@ -900,12 +767,10 @@
       if (!type) return;
 
       const elements = [];
-      let count = 40;
-
-      if (type === 'snow') { elements.push('??', '?', '?'); count = 45; }
-      if (type === 'snow-gift') { elements.push('??', '?', '??'); count = 55; }
-      if (type === 'flowers') { elements.push('??', '??'); count = 30; }
-      if (type === 'gifts') { elements.push('??', '??', '??'); count = 30; }
+      let count = 20;
+      if (type === 'snow') { elements.push('❄️', '❅', '❆'); count = 25; }
+      if (type === 'flowers') { elements.push('🌸', '💮'); count = 15; }
+      if (type === 'gifts') { elements.push('🎁', '🎉', '🎊'); count = 15; }
 
       for (let i = 0; i < count; i++) {
         const p = document.createElement('div');
@@ -913,13 +778,13 @@
         p.innerText = elements[Math.floor(Math.random() * elements.length)];
         p.style.left = Math.random() * 100 + 'vw';
         p.style.animationDuration = (Math.random() * 4 + 6) + 's';
-        p.style.animationDelay = Math.random() * 5 + 's';
-        p.style.fontSize = (Math.random() * 12 + 14) + 'px';
+        p.style.animationDelay = Math.random() * 4 + 's';
+        p.style.fontSize = (Math.random() * 10 + 14) + 'px';
         container.appendChild(p);
       }
     }
 
-    // Осыпающийся логотип
+    // Осыпание логотипа при нажатии
     function handleTitleClick() {
       if (titleDissolved) return; 
       titleDissolved = true;
@@ -929,13 +794,14 @@
       const text = title.innerText;
       title.innerHTML = ''; 
       subtitle.style.opacity = '0';
+      subtitle.style.transition = 'opacity 0.5s ease';
 
       for (let i = 0; i < text.length; i++) {
         let span = document.createElement('span');
         span.innerText = text[i] === ' ' ? '\u00A0' : text[i];
-        span.className = 'sand-letter';
-        let rot = (Math.random() - 0.5) * 80; 
-        let delay = Math.random() * 0.4; 
+        span.className = 'sand-letter text-[var(--text-main)]';
+        let rot = (Math.random() - 0.5) * 60; 
+        let delay = Math.random() * 0.2; 
         span.style.setProperty('--rot', rot + 'deg');
         span.style.transitionDelay = delay + 's';
         title.appendChild(span);
@@ -950,11 +816,120 @@
         title.style.display = 'none';
         subtitle.style.display = 'none';
         
-        // Показываем меню информации о магазине сразу, как и просил пользователь
-        document.getElementById('store-info-menu').classList.remove('hidden');
+        // В период отпуска сразу открываем меню с историей магазина, минуя таймер
+        if (window.globalIsVacation) {
+          document.getElementById('store-info-menu').classList.remove('hidden');
+        } else {
+          const now = new Date();
+          const mskNow = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (3 * 3600000));
+          const targetObj = getTargetTime(mskNow, window.globalIsOpen);
+          if (targetObj) startTimer(targetObj.time, targetObj.type);
+        }
       }, 1200);
     }
 
+    // Расчет времени до открытия/закрытия
+    function getTargetTime(mskNow, isOpen) {
+      let target = new Date(mskNow.getTime());
+      const month = target.getMonth();
+      const date = target.getDate();
+      const day = target.getDay();
+
+      if (isOpen) {
+        if (month === 4 && date === 9) target.setHours(15, 0, 0, 0);
+        else if (day >= 1 && day <= 5) target.setHours(18, 0, 0, 0);
+        else if (day === 6) target.setHours(17, 0, 0, 0);
+        return { time: target, type: 'close' };
+      } else {
+        for (let i = 0; i < 30; i++) {
+          let testDay = new Date(mskNow.getTime());
+          if (i > 0) {
+            testDay.setDate(testDay.getDate() + i);
+            testDay.setHours(0, 0, 0, 0); 
+          }
+          const m = testDay.getMonth();
+          const d = testDay.getDate();
+          const w = testDay.getDay();
+
+          if (((m === 11 && d === 31) || (m === 0 && d >= 1 && d <= 4))) continue; 
+          if (w === 0) continue; 
+
+          let openHour = (w === 6) ? 10 : 9; 
+          testDay.setHours(openHour, 0, 0, 0);
+
+          if (testDay.getTime() > mskNow.getTime()) {
+            return { time: testDay, type: 'open' };
+          }
+        }
+      }
+      return null;
+    }
+
+    // Запуск таймера
+    function startTimer(targetTimeMsk, type) {
+      const timerEl = document.getElementById('countdown-timer');
+      timerEl.style.display = 'block';
+      timerEl.onclick = showMiniMenu;
+      timerEl.classList.add('cursor-pointer');
+
+      function updateTimer() {
+        const now = new Date();
+        const mskNow = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (3 * 3600000));
+        const diff = targetTimeMsk.getTime() - mskNow.getTime();
+        const t = dict[currentLang];
+
+        if (diff <= 0) {
+           timerEl.innerHTML = `<div class="text-xl font-black text-emerald-500">Статус обновлен!</div>`;
+           clearInterval(timerInterval);
+           setTimeout(() => location.reload(), 2000); 
+           return;
+        }
+
+        const hoursLeft = diff / (1000 * 60 * 60);
+        let timerColor = '';
+        if (hoursLeft >= 15) timerColor = 'rgb(16, 185, 129)'; 
+        else if (hoursLeft <= 0) timerColor = 'rgb(239, 68, 68)'; 
+        else {
+          const ratio = hoursLeft / 15; 
+          const r = Math.round(239 - (239 - 16) * ratio);
+          const g = Math.round(68 + (185 - 68) * ratio);
+          const b = Math.round(68 + (129 - 68) * ratio);
+          timerColor = `rgb(${r}, ${g}, ${b})`;
+        }
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const m = Math.floor((diff / 1000 / 60) % 60);
+        const s = Math.floor((diff / 1000) % 60);
+
+        let timeStr = "";
+        if (d > 0) timeStr += d + " " + t.timer_d + " ";
+        timeStr += String(h).padStart(2, '0') + " " + t.timer_h + " ";
+        timeStr += String(m).padStart(2, '0') + " " + t.timer_m + " ";
+        timeStr += String(s).padStart(2, '0') + " " + t.timer_s;
+
+        const headingText = (type === 'close') ? t.timer_close_until : t.timer_until;
+
+        timerEl.innerHTML = `
+          <div class="bg-emerald-500/5 p-4 rounded-2xl border border-emerald-500/10 hover:bg-emerald-500/10 transition-colors">
+            <div class="text-[10px] text-[var(--text-muted)] font-bold uppercase tracking-widest mb-1">${headingText}</div>
+            <div class="text-2xl font-black" style="color: ${timerColor};">${timeStr}</div>
+            <div class="text-[10px] text-[var(--text-muted)] mt-1 font-medium">${t.timer_click}</div>
+          </div>
+        `;
+      }
+      
+      updateTimer();
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function showMiniMenu() {
+      clearInterval(timerInterval);
+      document.getElementById('countdown-timer').style.display = 'none';
+      document.getElementById('store-info-menu').classList.remove('hidden');
+    }
+
+    // Сброс и возврат в начальное состояние
     function resetToTitle() {
       document.getElementById('store-info-menu').classList.add('hidden');
       const title = document.getElementById('main-title');
@@ -968,9 +943,8 @@
       titleDissolved = false; 
     }
 
-    // Инициализация при загрузке страницы
+    // Инициализация при загрузке
     window.onload = function() {
-      animateUpdateDots();
       updateHolidaysAndStatus();
       setInterval(updateHolidaysAndStatus, 30000);
     };
