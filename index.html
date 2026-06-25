@@ -4,69 +4,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>АРТС&КРАФТИНГ | Ремонт одежды</title>
-  <!-- Tailwind CSS для адаптивной верстки -->
+  <!-- Подключение Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            ios: {
-              green: '#34c759',
-              blue: '#007aff',
-              yellow: '#ffcc00',
-              red: '#ff3b30'
-            }
-          }
-        }
-      }
-    }
-  </script>
   <style>
-    /* Переменные Ультра-чистой Стеклянной темы (Pure Liquid Glass) */
+    /* Переменные Светлой и Тёмной темы */
     :root {
       --ios-green: #34c759;
       --ios-blue: #007aff;
-      --spring: cubic-bezier(0.16, 1, 0.3, 1);
-      
-      --mesh-1: #f0f9ff;
-      --mesh-2: #ecfdf5;
-      --mesh-3: #faf5ff;
-      --mesh-4: #fff7ed;
-      
-      /* Чистое высокопрозрачное стекло с полированными гранями */
+      --spring: cubic-bezier(0.4, 0, 0.2, 1.4);
+      --mesh-1: #e0f2fe;
+      --mesh-2: #dcfce7;
+      --mesh-3: #f3e8ff;
+      --mesh-4: #ffedd5;
       --glass-bg: rgba(255, 255, 255, 0.15);
-      --glass-border: rgba(255, 255, 255, 0.45);
-      --glass-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.03), inset 0 1.5px 1.5px rgba(255, 255, 255, 0.7);
-      
+      --glass-border: rgba(255, 255, 255, 0.4);
+      --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
       --text-main: #1c1c1e;
-      --text-muted: #6e6e73;
-      --divider: rgba(0, 0, 0, 0.04);
-      --card-hover: rgba(255, 255, 255, 0.3);
+      --text-muted: #8e8e93;
+      --divider: rgba(0, 0, 0, 0.05);
+      --card-hover: rgba(0, 0, 0, 0.03);
     }
 
     body.dark-theme {
-      --mesh-1: #090d16;
-      --mesh-2: #021e17;
-      --mesh-3: #120b1e;
-      --mesh-4: #1c0f06;
-      
-      --glass-bg: rgba(15, 22, 36, 0.2);
-      --glass-border: rgba(255, 255, 255, 0.12);
-      --glass-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.15);
-      
-      --text-main: #f5f5f7;
-      --text-muted: #8e8e93;
-      --divider: rgba(255, 255, 255, 0.06);
+      --mesh-1: #0f172a;
+      --mesh-2: #064e3b;
+      --mesh-3: #3b0764;
+      --mesh-4: #451a03;
+      --glass-bg: rgba(15, 23, 42, 0.25);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+      --text-main: #ffffff;
+      --text-muted: #a1a1a6;
+      --divider: rgba(255, 255, 255, 0.08);
       --card-hover: rgba(255, 255, 255, 0.05);
     }
 
+    /* Сброс стилей и шрифты */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       -webkit-tap-highlight-color: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", sans-serif;
     }
 
     html {
@@ -76,51 +55,35 @@
     body {
       background-color: var(--mesh-1);
       color: var(--text-main);
-      line-height: 1.4;
       overflow-x: hidden;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
-      transition: background-color 0.8s var(--spring), color 0.8s var(--spring);
+      transition: background-color 0.5s ease, color 0.5s ease;
     }
 
-    /* Чистое стекло: тонкий блур, акцент на глянец и отражения */
-    .glass-premium {
-      background: var(--glass-bg);
-      backdrop-filter: blur(14px) saturate(190%);
-      -webkit-backdrop-filter: blur(14px) saturate(190%);
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--glass-shadow);
-      transition: background-color 0.6s var(--spring), border-color 0.6s var(--spring), box-shadow 0.6s var(--spring), transform 0.4s var(--spring);
-    }
-
-    .glass-premium:hover {
-      background-color: var(--card-hover);
-    }
-
-    /* Плавный дышащий фон (без вращения во избежание багов со срезами) */
+    /* Живой градиентный фон (Mesh Gradient) */
     .mesh-background {
       position: fixed;
       inset: 0;
-      z-index: -5;
-      background: radial-gradient(circle at 10% 20%, var(--mesh-1), transparent 50%),
-                  radial-gradient(circle at 90% 10%, var(--mesh-2), transparent 50%),
-                  radial-gradient(circle at 85% 85%, var(--mesh-3), transparent 50%),
-                  radial-gradient(circle at 15% 85%, var(--mesh-4), transparent 50%);
-      filter: blur(60px);
-      animation: breathe 16s ease-in-out infinite alternate;
-      transition: all 0.8s var(--spring);
+      z-index: -4;
+      background: radial-gradient(circle at 15% 50%, var(--mesh-1), transparent 50%),
+                  radial-gradient(circle at 85% 30%, var(--mesh-2), transparent 50%),
+                  radial-gradient(circle at 90% 90%, var(--mesh-3), transparent 50%),
+                  radial-gradient(circle at 10% 90%, var(--mesh-4), transparent 50%);
+      filter: blur(80px);
+      animation: breathe 20s ease-in-out infinite alternate;
+      transition: all 0.5s ease;
     }
 
     @keyframes breathe {
-      0% { transform: scale(1) translate(0px, 0px); }
-      100% { transform: scale(1.1) translate(5px, -5px); }
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
     }
 
-    /* Летние бесшовные SVG-волны (с 1 июня по 1 сентября) */
+    /* Летние бесшовные волны */
     .summer-waves-bg {
       position: fixed;
       bottom: 0; left: 0; right: 0;
-      height: 280px;
-      z-index: -4;
+      height: 220px;
+      z-index: -3;
       display: none;
       pointer-events: none;
       overflow: hidden;
@@ -130,32 +93,39 @@
       position: absolute;
       bottom: 0; left: 0;
       width: 200vw; height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="%23007aff" fill-opacity="0.1" d="M0,192L48,197.3C96,203,192,213,288,202.7C384,192,480,160,576,144C672,128,768,128,864,149.3C960,171,1056,213,1152,208C1248,203,1344,149,1392,122.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23007aff" fill-opacity="0.15" d="M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,181.3C960,203,1056,213,1152,197.3C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
       background-size: 50% 100%;
-      animation: waveAnim 18s linear infinite;
-      transform-origin: bottom center;
+      animation: waveMove 16s linear infinite;
     }
 
     .summer-wave:nth-child(2) {
-      bottom: -15px; opacity: 0.7;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="%2330b0ff" fill-opacity="0.06" d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,181.3C672,171,768,181,864,181.3C960,181,1056,171,1152,154.7C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-      animation: waveAnim 24s linear infinite reverse;
+      bottom: -10px; opacity: 0.6;
+      animation: waveMove 22s linear infinite reverse;
     }
 
-    @keyframes waveAnim {
+    .summer-wave:nth-child(3) {
+      bottom: -20px; opacity: 0.4;
+      animation: waveMove 30s linear infinite;
+    }
+
+    @keyframes waveMove {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50vw); }
     }
 
-    /* Праздничные падающие частицы */
-    #particles-container {
-      position: fixed;
-      inset: 0;
-      z-index: -3;
-      pointer-events: none;
-      overflow: hidden;
+    /* Эффект осыпающегося песка */
+    .sand-letter {
+      display: inline-block;
+      transition: transform 1.2s cubic-bezier(0.36, 0, 0.66, -0.56), opacity 1s ease, filter 1s ease;
+      transform-origin: bottom center;
+    }
+    .sand-letter.crumble {
+      transform: translateY(80px) rotate(var(--rot)) scale(0.6);
+      opacity: 0;
+      filter: blur(4px);
     }
 
+    /* Частицы праздников */
     .particle {
       position: absolute;
       top: -50px;
@@ -169,93 +139,46 @@
       90% { opacity: 1; }
       100% { top: 110%; opacity: 0; }
     }
-
     @keyframes sway {
       0% { transform: translateX(0) rotate(0deg); }
-      100% { transform: translateX(30px) rotate(45deg); }
+      100% { transform: translateX(20px) rotate(35deg); }
     }
 
-    /* Мягкий клик на кнопках */
-    .btn-active-scale:active {
-      transform: scale(0.96) translateY(1px);
+    /* Георгиевская лента */
+    .ribbons-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      opacity: 0.4;
+      pointer-events: none;
+      display: none;
     }
 
-    /* Песочный распад логотипа */
-    .sand-letter {
-      display: inline-block;
-      transition: transform 1.3s cubic-bezier(0.36, 0, 0.66, -0.56), opacity 1.1s ease, filter 1.1s ease;
-      transform-origin: bottom center;
-    }
-    .sand-letter.crumble {
-      transform: translateY(110px) rotate(var(--rot)) scale(0.5);
-      opacity: 0;
-      filter: blur(5px);
-    }
-
-    /* Dynamic Island */
-    .island {
-      background: rgba(18, 18, 22, 0.88);
+    /* Чистый стеклянный стиль */
+    .pure-glass {
+      background: var(--glass-bg);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      color: white;
-      transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1), height 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .island-body {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-      opacity: 0;
-    }
-
-    .island.expanded .island-body {
-      grid-template-rows: 1fr;
-      opacity: 1;
-    }
-
-    /* Меню языков и темы с жесткими приоритетами */
-    .lang-menu {
-      position: absolute !important;
-      top: 100% !important;
-      right: 0 !important;
-      margin-top: 8px !important;
-      min-width: 170px !important;
-      border-radius: 16px !important;
-      overflow: hidden !important;
-      opacity: 0 !important;
-      pointer-events: none !important;
-      transform: translateY(-10px) !important;
-      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      z-index: 1001 !important;
-    }
-
-    .lang-menu.open {
-      opacity: 1 !important;
-      pointer-events: auto !important;
-      transform: translateY(0) !important;
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow);
     }
   </style>
 </head>
 <body id="top">
 
-  <!-- Живой бэкграунд -->
+  <!-- Живой бэкграунд и сезонные модули -->
   <div class="mesh-background"></div>
-  
-  <!-- Интерактивные летние волны -->
   <div class="summer-waves-bg" id="summer-waves">
     <div class="summer-wave"></div>
     <div class="summer-wave"></div>
+    <div class="summer-wave"></div>
   </div>
+  <div id="particles-container" class="fixed inset-0 pointer-events-none z-10"></div>
 
-  <!-- Контейнер для праздничных эффектов -->
-  <div id="particles-container"></div>
-
-  <!-- Георгиевские ленты (9 Мая) -->
-  <div class="fixed inset-0 -z-30 pointer-events-none hidden opacity-30" id="ribbons-bg">
+  <!-- Георгиевские ленты на 9 мая -->
+  <div class="ribbons-bg" id="ribbons-bg">
     <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <g stroke-linecap="square">
+      <g stroke-linecap="square" opacity="0.6">
         <path d="M-100,100 C300,50 600,250 1200,50" stroke="#1c1c1e" stroke-width="40" fill="none" />
         <path d="M-100,100 C300,50 600,250 1200,50" stroke="#ff7b00" stroke-width="24" fill="none" />
         <path d="M-100,100 C300,50 600,250 1200,50" stroke="#1c1c1e" stroke-width="8" fill="none" />
@@ -266,224 +189,230 @@
     </svg>
   </div>
 
-  <!-- ВЕРХНЯЯ ПАНЕЛЬ -->
-  <div class="sticky top-4 z-[50] w-full max-w-[1200px] h-12 mx-auto px-4 flex justify-between items-center pointer-events-none">
-    
-    <!-- Переключатель тем и кнопка БЕТА слева -->
-    <div class="flex items-center gap-2 pointer-events-auto">
-      <button class="glass-premium btn-active-scale flex items-center justify-center w-10 h-10 rounded-full text-neutral-800 dark:text-neutral-200" onclick="toggleTheme(event)">
-        <span id="theme-icon" class="text-base">🌙</span>
-      </button>
-      <div id="beta-badge" class="glass-premium flex items-center justify-center px-3.5 py-2.5 h-10 rounded-full text-[9.5px] font-black uppercase tracking-widest text-amber-600 dark:text-amber-400 border border-amber-500/20 select-none">
-        BETA 2026
-      </div>
-    </div>
-
-    <!-- Dynamic Island по центру -->
-    <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
-      <div class="island w-[190px] rounded-[24px] px-4 py-2 flex flex-col justify-start items-center cursor-pointer overflow-hidden" id="dynamic-island" onclick="toggleIsland(event)">
-        <!-- Шапка острова -->
-        <div class="flex items-center gap-2 w-full justify-center">
-          <div class="w-2 h-2 rounded-full bg-zinc-600 transition-all duration-500 shrink-0" id="status-dot"></div>
-          <span id="status-text" class="text-white text-xs font-semibold select-none truncate" data-i18n="status_loading">Определяем статус...</span>
+  <!-- Верхняя навигационная панель -->
+  <div class="sticky top-0 z-[100] w-full px-4 py-3 flex justify-center">
+    <div class="max-w-[1200px] w-full flex items-center justify-between relative h-[50px]">
+      
+      <!-- Левый стек: BETA и UPDATE -->
+      <div class="flex items-center gap-2">
+        <div class="pure-glass px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider text-slate-500 dark:text-slate-400 select-none shadow-sm">
+          BETA 2026
         </div>
-        <!-- Список обновлений при раскрытии -->
-        <div class="island-body w-full">
-          <div class="overflow-hidden min-h-0 w-full pt-2 flex flex-col">
-            <div class="w-full h-[1px] bg-white/10 my-2"></div>
-            <div id="island-current-date" class="text-neutral-400 text-[10px] uppercase font-bold tracking-wider mb-2">📅 Дата: 23 июня 2026</div>
-            <div class="text-white text-[11px] font-extrabold mb-1.5" data-i18n="island_updates_title">Что нового:</div>
-            <ul class="flex flex-col gap-1 list-none pl-0">
-              <li class="text-neutral-300 text-[10.5px] leading-relaxed flex items-start gap-1">✦ <span data-i18n="island_update_1">Чистый стеклянный дизайн Pro</span></li>
-              <li class="text-neutral-300 text-[10.5px] leading-relaxed flex items-start gap-1">✦ <span data-i18n="island_update_2">Автономный информер об отпуске</span></li>
-              <li class="text-neutral-300 text-[10.5px] leading-relaxed flex items-start gap-1">✦ <span data-i18n="island_update_3">Полное устранение Beta-меток</span></li>
-              <li class="text-neutral-300 text-[10.5px] leading-relaxed flex items-start gap-1">✦ <span data-i18n="island_update_4">Мгновенное переключение тем</span></li>
+        <div class="pure-glass px-3 py-1.5 rounded-full text-[11px] font-bold tracking-wider text-amber-600 dark:text-amber-400 select-none shadow-sm flex items-center gap-1">
+          <span>?? UPDATE</span><span id="update-dots-header">...</span>
+        </div>
+      </div>
+
+      <!-- Центральный Dynamic Island -->
+      <div class="absolute left-1/2 -translate-x-1/2 top-0 z-[101]">
+        <div id="dynamic-island" class="bg-black/90 dark:bg-black/95 text-white rounded-[26px] py-2.5 px-5 flex flex-col items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] shadow-xl cursor-pointer w-[200px] min-h-[44px]">
+          
+          <!-- Обычный свернутый вид -->
+          <div id="island-collapsed" class="flex items-center gap-2.5 w-full justify-center transition-opacity duration-300">
+            <span id="status-dot" class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+            <span id="status-text" class="text-xs font-bold tracking-wide select-none">Определяем...</span>
+          </div>
+
+          <!-- Раскрытый вид (Список обновлений) -->
+          <div id="island-expanded" class="hidden flex-col w-full px-1 py-2 text-left transition-all duration-300">
+            <div class="flex items-center justify-between border-b border-white/10 pb-2 mb-2">
+              <span id="expanded-date" class="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Дата</span>
+              <span class="text-[10px] bg-white/15 px-2 py-0.5 rounded-full text-white font-bold uppercase">Сводка</span>
+            </div>
+            <h4 class="text-xs font-bold text-white mb-2 tracking-wide" data-i18n="island_title">Что изменилось:</h4>
+            <ul class="space-y-1.5 text-[11px] text-slate-300 leading-relaxed">
+              <li class="flex items-start gap-1.5">
+                <span class="text-amber-400">?</span>
+                <span data-i18n="upd_1">Стеклянный интерфейс Pure Liquid Glass</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-amber-400">?</span>
+                <span data-i18n="upd_2">Автономный информер летнего отпуска 2026</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-amber-400">?</span>
+                <span data-i18n="upd_3">Раздел контактов временно заблокирован</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-amber-400">?</span>
+                <span data-i18n="upd_4">Исправлена логика запуска Dynamic Island</span>
+              </li>
             </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Правый стек: Выбор языка -->
+      <div class="relative">
+        <button id="lang-btn" onclick="toggleLangMenu()" class="pure-glass px-4 py-2 rounded-full text-xs font-bold text-[var(--text-main)] flex items-center gap-1.5 transition-all active:scale-95 shadow-sm">
+          <span id="lang-icon">????</span> <span id="lang-text">RU</span>
+        </button>
+        <div id="lang-menu" class="absolute right-0 top-[110%] w-[180px] pure-glass rounded-2xl overflow-hidden shadow-2xl opacity-0 pointer-events-none scale-95 transition-all duration-300 origin-top-right z-[105] !important">
+          <div onclick="setLang('ru')" class="px-4 py-3 text-xs font-semibold cursor-pointer flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/5 border-b border-[var(--divider)]">???? Русский</div>
+          <div onclick="setLang('en')" class="px-4 py-3 text-xs font-semibold cursor-pointer flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/5 border-b border-[var(--divider)]">???? English</div>
+          <div onclick="setLang('kz')" class="px-4 py-3 text-xs font-semibold cursor-pointer flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/5 border-b border-[var(--divider)]">???? ?аза?ша</div>
+          <div onclick="toggleTheme()" class="px-4 py-3 text-xs font-semibold cursor-pointer flex items-center gap-2 hover:bg-black/5 dark:hover:bg-white/5">
+            <span id="theme-emoji">??</span> <span id="theme-label" data-i18n="theme_dark">Тёмная тема</span>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Меню выбора языков справа -->
-    <div class="lang-switcher pointer-events-auto relative">
-      <button class="lang-btn glass-premium btn-active-scale flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold text-neutral-800 dark:text-neutral-200" onclick="toggleLangMenu(event)">
-        <span id="current-lang-icon" class="text-sm">🇷🇺</span> 
-        <span id="current-lang-text" class="tracking-wider">RU</span>
-      </button>
-      
-      <!-- Выпадающее меню -->
-      <div class="lang-menu glass-premium shadow-lg" id="lang-menu">
-        <div class="lang-option px-4 py-3 text-xs font-semibold hover:bg-white/10 flex items-center gap-2 cursor-pointer border-b border-white/10 text-neutral-800 dark:text-neutral-200" onclick="setLang('ru', event)"><span>🇷🇺</span> Русский</div>
-        <div class="lang-option px-4 py-3 text-xs font-semibold hover:bg-white/10 flex items-center gap-2 cursor-pointer border-b border-white/10 text-neutral-800 dark:text-neutral-200" onclick="setLang('en', event)"><span>🇬🇧</span> English</div>
-        <div class="lang-option px-4 py-3 text-xs font-semibold hover:bg-white/10 flex items-center gap-2 cursor-pointer border-b border-white/10 text-neutral-800 dark:text-neutral-200" onclick="setLang('kz', event)"><span>🇰🇿</span> Қазақша</div>
-        <div class="h-[1px] bg-neutral-200 dark:bg-white/10 my-1"></div>
-        <div class="lang-option px-4 py-3 text-xs font-semibold hover:bg-white/10 flex items-center gap-2 cursor-pointer text-neutral-800 dark:text-neutral-200" onclick="showVacationMessage()">
-          <span>📢</span> <span data-i18n="view_message">Посмотреть сообщение</span>
-        </div>
-      </div>
     </div>
   </div>
 
-  <!-- ОСНОВНОЙ КОНТЕНТ (Двухколоночный Grid для ПК, Стек для смартфонов) -->
-  <div class="container max-w-[1200px] mx-auto px-4 pt-12 pb-32 transition-opacity duration-300">
-    
+  <!-- Основной контейнер с двухколоночной сеткой для ПК -->
+  <main class="max-w-[1200px] mx-auto px-4 pt-10 pb-32">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
-      <!-- ЛЕВАЯ КОЛОНКА (Десктоп: 5 из 12) -->
-      <div class="lg:col-span-5 flex flex-col gap-6 lg:sticky lg:top-24">
+      <!-- ЛЕВАЯ КОЛОНКА (Логотип, Отпуск, Адрес, Контакты) -->
+      <div class="lg:col-span-5 space-y-6">
         
-        <!-- Шапка страницы -->
-        <header id="header-section" class="section-anchor text-center lg:text-left min-h-[90px]">
-          <h1 class="logo-animate text-5xl font-black tracking-tighter leading-none" id="main-title" onclick="handleTitleClick()">АРТС&КРАФТИНГ</h1>
+        <header class="text-center lg:text-left">
+          <h1 id="main-title" onclick="handleTitleClick()" class="text-4xl lg:text-5xl font-extrabold tracking-tight cursor-pointer select-none inline-block">АРТС&КРАФТИНГ</h1>
+          <p id="header-subtitle" class="text-slate-500 dark:text-slate-400 font-medium text-sm lg:text-base mt-2" data-i18n="subtitle">Ремонт одежды — честно и в срок</p>
           
-          <!-- Зона таймера и информации о магазине -->
+          <!-- Место под симулятор ПО -->
           <div id="countdown-timer" class="mt-4"></div>
           
-          <div id="store-info-menu" class="glass-premium p-6 rounded-3xl mt-4 hidden text-left">
-            <h3 class="text-lg font-bold mb-3" data-i18n="menu_info">Информация о магазине</h3>
-            <p class="text-xs text-neutral-500 dark:text-neutral-400 mb-2"><strong class="text-neutral-800 dark:text-neutral-200" data-i18n="menu_founded">Основан:</strong> <span data-i18n="menu_date">22 февраля 2022 г. в 12:08</span></p>
-            <p class="text-xs text-neutral-500 dark:text-neutral-400 mb-2 leading-relaxed"><strong class="text-neutral-800 dark:text-neutral-200" data-i18n="menu_history">История:</strong> <span data-i18n="menu_history_text">Был создан на 2 ряду напротив "Принт плюс", и потом был перекинут на второй ряд около фотомагазина Kodak.</span></p>
-            <p class="text-xs text-neutral-500 dark:text-neutral-400 mb-4"><strong class="text-neutral-800 dark:text-neutral-200" data-i18n="menu_manager">Управляющая:</strong> <span data-i18n="menu_manager_name">Ксения Бондаренко Сергеевна</span></p>
-            <button class="btn-active-scale w-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 py-3 rounded-2xl font-bold text-xs shadow-md transition-all duration-300" onclick="resetToTitle()" data-i18n="menu_back">Вернуться назад</button>
+          <div id="store-info-menu" class="hidden pure-glass p-6 rounded-3xl text-left mt-4 transition-all duration-500">
+            <h3 class="font-bold text-lg mb-3" data-i18n="menu_info">Информация о магазине</h3>
+            <div class="space-y-2.5 text-xs text-[var(--text-muted)]">
+              <p><strong>Основан:</strong> <span data-i18n="menu_date">22 февраля 2022 г. в 12:08</span></p>
+              <p><strong>История:</strong> <span data-i18n="menu_history_text">Был создан на 2 ряду напротив "Принт плюс", и потом был перекинут на второй ряд около фотомагазина Kodak.</span></p>
+              <p><strong>Управляющая:</strong> <span data-i18n="menu_manager_name">Ксения Бондаренко Сергеевна</span></p>
+            </div>
+            <button onclick="resetToTitle()" class="w-full mt-4 bg-[var(--ios-green)] text-white text-xs font-bold py-3 rounded-xl hover:opacity-90 active:scale-95 transition-all" data-i18n="menu_back">Вернуться назад</button>
           </div>
-
-          <p id="header-subtitle" class="text-sm font-semibold text-neutral-500 dark:text-neutral-400 mt-2.5 tracking-wide" data-i18n="subtitle">Ремонт одежды — честно и в срок</p>
         </header>
 
-        <!-- АВТОНОМНОЕ МЕНЮ ОБ ОТПУСКЕ (Чистое стекло) -->
-        <div class="glass-premium rounded-3xl p-5 border border-amber-500/20 dark:border-amber-400/10 shadow-sm relative overflow-hidden flex flex-col gap-3" id="standalone-vacation-card">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-2xl bg-amber-500/10 dark:bg-amber-400/10 text-amber-500 flex items-center justify-center text-xl shrink-0">
-              🏖
-            </div>
-            <div>
-              <h3 class="text-sm font-black text-neutral-900 dark:text-white leading-tight" data-i18n="vacation_banner_title">Предстоящий отпуск</h3>
-              <p class="text-[11px] text-amber-600 dark:text-amber-400 font-bold" data-i18n="vacation_banner_dates">С 6 по 19 июля 2026г.</p>
-            </div>
+        <!-- Праздничный виджет -->
+        <div id="holiday-widget" class="hidden pure-glass p-5 rounded-3xl relative overflow-hidden items-center gap-4 transition-all duration-300">
+          <div id="holiday-ribbon" class="hidden absolute inset-y-0 left-0 w-3"></div>
+          <div id="holiday-icon" class="text-4xl select-none">??</div>
+          <div class="flex-1">
+            <h3 id="holiday-title" class="font-bold text-sm lg:text-base">Праздник!</h3>
+            <p id="holiday-text" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Поздравляем!</p>
           </div>
-          <p class="text-xs text-neutral-600 dark:text-neutral-300 leading-relaxed" data-i18n="vacation_banner_text">
-            Уважаемые клиенты! Обратите внимание, что в указанный период мастерская не будет работать. Ждем вас со всеми заказами с 20 июля!
-          </p>
         </div>
 
-        <!-- Праздничный динамический виджет -->
-        <div class="glass-premium holiday-widget rounded-3xl relative overflow-hidden p-5 flex items-center gap-4 shadow-md" id="holiday-widget">
-          <div class="ribbon-stripe" id="holiday-ribbon"></div>
-          <div class="holiday-icon text-4xl shrink-0" id="holiday-icon"></div>
-          <div class="holiday-text flex-1">
-            <h3 id="holiday-title" class="text-sm font-black text-neutral-900 dark:text-white"></h3>
-            <p id="holiday-text" class="text-xs text-neutral-500 dark:text-neutral-400 mt-1"></p>
+        <!-- Постоянный информер планового летнего отпуска 2026 -->
+        <div class="pure-glass p-5 rounded-3xl flex items-start gap-4 transition-all duration-300 shadow-sm border border-amber-500/10">
+          <div class="bg-amber-500/10 p-3 rounded-2xl text-2xl select-none">??</div>
+          <div class="space-y-1">
+            <h3 class="font-bold text-sm" data-i18n="vacation_banner_title">Плановый летний отпуск 2026</h3>
+            <p class="text-[11px] text-amber-600 dark:text-amber-400 font-bold uppercase tracking-wider" data-i18n="vacation_banner_status">Отдел временно закрыт в указанные даты</p>
+            <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed mt-1" data-i18n="vacation_banner_desc">
+              Уважаемые клиенты! С 06.07.2026 по 19.07.2026 наша мастерская уходит на ежегодные летние каникулы. Мы с радостью продолжим работу в обычном режиме с 20 июля 2026 года!
+            </p>
           </div>
         </div>
 
         <!-- Адрес -->
-        <a href="https://yandex.ru/maps/?text=Тамбов+Мичуринская+141" class="glass-premium rounded-3xl flex items-center gap-4 p-5 btn-active-scale shadow-sm">
-          <div class="w-12 h-12 bg-ios-blue text-white rounded-2xl flex items-center justify-center text-xl shadow-lg shadow-ios-blue/10 shrink-0">
-            📍
-          </div>
-          <div class="address-info">
-            <h3 class="text-sm font-black text-neutral-900 dark:text-white leading-tight" data-i18n="address_city">г. Тамбов, ул. Мичуринская 141</h3>
-            <p class="text-xs text-neutral-500 dark:text-neutral-400 mt-0.5" data-i18n="address_desc">Транзит, 2 ряд</p>
+        <a href="https://yandex.ru/maps/?text=Тамбов+Мичуринская+141" target="_blank" class="pure-glass p-5 rounded-3xl flex items-center gap-4 hover:bg-black/5 dark:hover:bg-white/5 transition-all duration-300 block shadow-sm">
+          <div class="w-12 h-12 rounded-2xl bg-blue-500 flex items-center justify-center text-xl text-white select-none">??</div>
+          <div>
+            <h3 class="font-bold text-sm" data-i18n="address_city">г. Тамбов, ул. Мичуринская 141</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="address_desc">Транзит, 2 ряд</p>
           </div>
         </a>
 
-        <!-- Связь с мастером -->
-        <div class="flex flex-col">
-          <h2 class="section-title section-anchor text-sm font-black uppercase tracking-wider text-neutral-400 mb-3 ml-1" id="contacts-section" data-i18n="contacts_title">Связь с мастером</h2>
-          <div class="ios-list glass-premium rounded-3xl overflow-hidden shadow-sm">
-            <a href="tel:89027246061" class="list-item flex items-center justify-between p-4 border-b border-neutral-200/50 dark:border-white/5 hover:bg-white/5 transition-all">
-              <div class="flex items-center gap-4">
-                <div class="w-9 h-9 rounded-xl flex items-center justify-center bg-ios-green/10 text-ios-green text-lg font-bold">
-                  📞
-                </div>
+        <!-- Блок Связь с мастером (ЗАБЛОКИРОВАН МАТОВЫМ СТЕКЛОМ) -->
+        <div class="relative rounded-3xl overflow-hidden shadow-sm">
+          
+          <!-- Фоновый контент контактов (размыт и не кликабелен) -->
+          <div class="pure-glass p-5 space-y-4 filter blur-[2px] pointer-events-none select-none">
+            <h2 class="text-lg font-bold tracking-tight mb-3">Связь с мастером</h2>
+            <div class="space-y-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-green-500/15 flex items-center justify-center text-lg">??</div>
                 <div>
-                  <div class="font-bold text-xs" data-i18n="phone">Телефон</div>
-                  <div class="text-[11px] text-neutral-500 dark:text-neutral-400">+7 (902) 724-60-61</div>
+                  <p class="text-xs font-bold">Телефон</p>
+                  <p class="text-[11px] text-slate-400">+7 (902) 724-60-61</p>
                 </div>
               </div>
-            </a>
-            <a href="https://t.me/ARTSANDCRAFTING" target="_blank" class="list-item flex items-center justify-between p-4 border-b border-neutral-200/50 dark:border-white/5 hover:bg-white/5 transition-all">
-              <div class="flex items-center gap-4">
-                <div class="w-9 h-9 rounded-xl flex items-center justify-center bg-ios-blue/10 text-ios-blue text-lg font-bold">
-                  ✈️
-                </div>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-500/15 flex items-center justify-center text-lg">??</div>
                 <div>
-                  <div class="font-bold text-xs" data-i18n="tg_title">Telegram канал</div>
-                  <div class="text-[11px] text-neutral-500 dark:text-neutral-400" data-i18n="tg_desc">Наши новости</div>
+                  <p class="text-xs font-bold">Telegram канал</p>
+                  <p class="text-[11px] text-slate-400">Наши новости</p>
                 </div>
               </div>
-            </a>
-            <a href="https://max.ru/join/6vA9eQ-0nmP55CTnB5MfnYQ4zmW253WY_fukBZuK5lU" target="_blank" class="list-item flex items-center justify-between p-4 hover:bg-white/5 transition-all">
-              <div class="flex items-center gap-4">
-                <div class="w-9 h-9 rounded-xl flex items-center justify-center bg-purple-500/10 text-purple-500 text-lg font-bold">
-                  🔗
-                </div>
-                <div>
-                  <div class="font-bold text-xs" data-i18n="max_title">MAX канал</div>
-                  <div class="text-[11px] text-neutral-500 dark:text-neutral-400" data-i18n="max_desc">Присоединиться</div>
-                </div>
-              </div>
-            </a>
+            </div>
           </div>
+
+          <!-- Матовая заглушка блокировки обновлений -->
+          <div class="absolute inset-0 bg-slate-100/40 dark:bg-slate-900/45 backdrop-blur-[12px] flex flex-col items-center justify-center p-6 text-center z-10">
+            <div class="animate-spin text-2xl text-slate-700 dark:text-white select-none mb-3">
+              <svg class="w-8 h-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="font-extrabold text-sm text-slate-800 dark:text-white uppercase tracking-wider" data-i18n="contacts_locked_title">Идут обновления, подождите.</h3>
+            <p class="text-[10px] text-slate-500 dark:text-slate-400 mt-1 uppercase font-bold tracking-widest" data-i18n="contacts_locked_desc">Раздел временно заблокирован</p>
+          </div>
+
         </div>
 
       </div>
 
-      <!-- ПРАВАЯ КОЛОНКА (Десктоп: 7 из 12) -->
-      <div class="lg:col-span-7 flex flex-col gap-6">
+      <!-- ПРАВАЯ КОЛОНКА (Услуги, Товары) -->
+      <div class="lg:col-span-7 space-y-6">
         
-        <!-- Услуги -->
-        <div>
-          <h2 class="section-title section-anchor text-sm font-black uppercase tracking-wider text-neutral-400 mb-3 ml-1" id="services-section" data-i18n="services_title">Что мы делаем</h2>
-          <div class="grid grid-cols-2 gap-4">
-            <!-- Карточка 1 -->
-            <div class="glass-premium rounded-3xl p-5 flex flex-col justify-between min-h-[140px] btn-active-scale shadow-sm">
-              <div class="text-3xl mb-2">⚙️</div>
+        <div class="space-y-4">
+          <h2 class="text-xl lg:text-2xl font-black tracking-tight" data-i18n="services_title">Что мы делаем</h2>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <div class="pure-glass p-5 rounded-3xl flex flex-col justify-between min-h-[140px] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-sm">
+              <span class="text-3xl select-none">??</span>
               <div>
-                <div class="text-[11px] font-bold text-neutral-800 dark:text-neutral-200" data-i18n="srv1_name">Замена бегунка</div>
-                <div class="text-base font-black text-ios-green mt-1"><span data-i18n="from">от</span> 150₽</div>
+                <h4 class="font-bold text-xs text-slate-400 uppercase tracking-wide" data-i18n="srv1_name">Замена бегунка</h4>
+                <p class="text-lg lg:text-xl font-extrabold text-[var(--ios-green)] mt-1"><span data-i18n="from">от</span> 150?</p>
               </div>
             </div>
-            <!-- Карточка 2 -->
-            <div class="glass-premium rounded-3xl p-5 flex flex-col justify-between min-h-[140px] btn-active-scale shadow-sm">
-              <div class="text-3xl mb-2">🪡</div>
+
+            <div class="pure-glass p-5 rounded-3xl flex flex-col justify-between min-h-[140px] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-sm">
+              <span class="text-3xl select-none">??</span>
               <div>
-                <div class="text-[11px] font-bold text-neutral-800 dark:text-neutral-200" data-i18n="srv2_name">Замена молнии</div>
-                <div class="text-base font-black text-ios-green mt-1"><span data-i18n="from">от</span> 450₽</div>
+                <h4 class="font-bold text-xs text-slate-400 uppercase tracking-wide" data-i18n="srv2_name">Замена молнии</h4>
+                <p class="text-lg lg:text-xl font-extrabold text-[var(--ios-green)] mt-1"><span data-i18n="from">от</span> 450?</p>
               </div>
             </div>
-            <!-- Карточка 3 -->
-            <div class="glass-premium rounded-3xl p-5 flex flex-col justify-between min-h-[140px] btn-active-scale shadow-sm">
-              <div class="text-3xl mb-2">🧥</div>
+
+            <div class="pure-glass p-5 rounded-3xl flex flex-col justify-between min-h-[140px] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-sm">
+              <span class="text-3xl select-none">??</span>
               <div>
-                <div class="text-[11px] font-bold text-neutral-800 dark:text-neutral-200" data-i18n="srv3_name">Ремонт кожи и меха</div>
-                <div class="text-base font-black text-ios-green mt-1"><span data-i18n="from">от</span> 500₽</div>
+                <h4 class="font-bold text-xs text-slate-400 uppercase tracking-wide" data-i18n="srv3_name">Ремонт кожи и меха</h4>
+                <p class="text-lg lg:text-xl font-extrabold text-[var(--ios-green)] mt-1"><span data-i18n="from">от</span> 500?</p>
               </div>
             </div>
-            <!-- Карточка 4 -->
-            <div class="glass-premium rounded-3xl p-5 flex flex-col justify-between min-h-[140px] btn-active-scale shadow-sm">
-              <div class="text-3xl mb-2">📐</div>
+
+            <div class="pure-glass p-5 rounded-3xl flex flex-col justify-between min-h-[140px] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer shadow-sm">
+              <span class="text-3xl select-none">??</span>
               <div>
-                <div class="text-[11px] font-bold text-neutral-800 dark:text-neutral-200" data-i18n="srv4_name">Подшив брюк/джинс</div>
-                <div class="text-base font-black text-ios-green mt-1"><span data-i18n="from">от</span> 400₽</div>
+                <h4 class="font-bold text-xs text-slate-400 uppercase tracking-wide" data-i18n="srv4_name">Подшив брюк/джинс</h4>
+                <p class="text-lg lg:text-xl font-extrabold text-[var(--ios-green)] mt-1"><span data-i18n="from">от</span> 400?</p>
               </div>
             </div>
+
           </div>
         </div>
 
-        <!-- Товары -->
-        <div>
-          <h2 class="section-title section-anchor text-sm font-black uppercase tracking-wider text-neutral-400 mb-3 ml-1" id="goods-section" data-i18n="goods_title">Наш товар, который можно купить:</h2>
-          <div class="photo-grid grid grid-cols-3 gap-1.5 rounded-3xl overflow-hidden glass-premium p-1.5 shadow-sm">
-            <img src="https://i.postimg.cc/0zRYN9T3/image.jpg" alt="Товар 1" class="w-full aspect-square object-cover rounded-2xl hover:scale-[1.03] transition-all duration-300">
-            <img src="https://i.postimg.cc/jw5N12fd/image.jpg" alt="Товар 2" class="w-full aspect-square object-cover rounded-2xl hover:scale-[1.03] transition-all duration-300">
-            <img src="https://i.postimg.cc/300GKqn3/image.jpg" alt="Товар 3" class="w-full aspect-square object-cover rounded-2xl hover:scale-[1.03] transition-all duration-300">
-            <img src="https://i.postimg.cc/Rq2fPMZn/image.jpg" alt="Товар 4" class="w-full aspect-square object-cover rounded-2xl hover:scale-[1.03] transition-all duration-300">
-            <img src="https://i.postimg.cc/Lq4Zq5NW/image.jpg" alt="Товар 5" class="w-full aspect-square object-cover rounded-2xl hover:scale-[1.03] transition-all duration-300">
-            <img src="https://i.postimg.cc/VrdrRTyD/image.jpg" alt="Товар 6" class="w-full aspect-square object-cover rounded-2xl hover:scale-[1.03] transition-all duration-300">
-            <img src="https://i.postimg.cc/6T444DLS/image.jpg" alt="Товар 7" class="w-full aspect-square object-cover rounded-2xl hover:scale-[1.03] transition-all duration-300">
-            <img src="https://i.postimg.cc/zy8yM3Z5/image.jpg" alt="Товар 8" class="w-full aspect-square object-cover rounded-2xl hover:scale-[1.03] transition-all duration-300">
-            <img src="https://i.postimg.cc/tZKTz4t8/image.jpg" alt="Товар 9" class="w-full aspect-square object-cover rounded-2xl hover:scale-[1.03] transition-all duration-300">
+        <!-- Наш товар -->
+        <div class="space-y-4">
+          <h2 class="text-xl lg:text-2xl font-black tracking-tight" data-i18n="goods_title">Наш товар, который можно купить:</h2>
+          <div class="grid grid-cols-3 gap-2 rounded-3xl overflow-hidden pure-glass p-2 shadow-sm">
+            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/0zRYN9T3/image.jpg" alt="Товар 1">
+            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/jw5N12fd/image.jpg" alt="Товар 2">
+            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/300GKqn3/image.jpg" alt="Товар 3">
+            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/Rq2fPMZn/image.jpg" alt="Товар 4">
+            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/Lq4Zq5NW/image.jpg" alt="Товар 5">
+            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/VrdrRTyD/image.jpg" alt="Товар 6">
+            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/6T444DLS/image.jpg" alt="Товар 7">
+            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/zy8yM3Z5/image.jpg" alt="Товар 8">
+            <img class="w-full aspect-square object-cover rounded-2xl" src="https://i.postimg.cc/tZKTz4t8/image.jpg" alt="Товар 9">
           </div>
         </div>
 
@@ -491,67 +420,59 @@
 
     </div>
 
-    <!-- Подвал -->
-    <footer class="mt-16 text-center text-neutral-400 dark:text-neutral-500 text-xs tracking-wider" data-i18n="footer">
+    <!-- Футер -->
+    <footer class="mt-16 text-center text-[11px] text-slate-400 font-bold uppercase tracking-widest" data-i18n="footer">
       АРТС&КРАФТИНГ • Тамбов • Мичуринская 141
     </footer>
-  </div>
+  </main>
 
-  <!-- СМАРТ КАРМАН ДЛЯ НАВИГАЦИИ (Умный док) -->
-  <div class="bottom-nav-wrapper">
-    <div class="bottom-glass-nav glass-premium" id="smart-nav">
-      <a href="#top" class="nav-btn active" data-target="header-section" aria-label="Наверх">
-        <svg class="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M12 19V5M5 12l7-7 7 7"/>
+  <!-- ЭКРАН СИСТЕМНОГО ОБНОВЛЕНИЯ (Overlay при входе) -->
+  <div id="update-screen" class="fixed inset-0 z-[99999] flex items-center justify-center bg-slate-100/30 dark:bg-slate-900/40 backdrop-blur-[24px] px-4 transition-all duration-700 opacity-100">
+    <div class="max-w-[420px] w-full pure-glass rounded-[32px] p-8 text-center shadow-2xl border border-white/25 dark:border-white/10 flex flex-col items-center">
+      
+      <!-- Крутящийся спиннер iOS -->
+      <div class="w-16 h-16 rounded-full flex items-center justify-center bg-black/5 dark:bg-white/5 border border-white/40 dark:border-white/10 shadow-inner mb-6 relative">
+        <svg class="animate-spin h-8 w-8 text-[var(--text-main)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
         </svg>
-      </a>
-      <a href="#services-section" class="nav-btn" data-target="services-section" aria-label="Услуги">
-        <svg class="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle>
-          <line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line>
-        </svg>
-      </a>
-      <a href="#contacts-section" class="nav-btn" data-target="contacts-section" aria-label="Контакты">
-        <svg class="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-        </svg>
-      </a>
-      <a href="#goods-section" class="nav-btn" data-target="goods-section" aria-label="Товары">
-        <svg class="w-5 h-5 stroke-current" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-          <line x1="3" y1="6" x2="21" y2="6"/>
-          <path d="M16 10a4 4 0 0 1-8 0"/>
-        </svg>
-      </a>
-    </div>
-  </div>
+      </div>
 
-  <!-- Окно Отпуска -->
-  <div id="vacation-overlay" aria-hidden="true" class="fixed inset-0 z-[99999] hidden justify-center items-center p-4 bg-slate-900/10 dark:bg-zinc-950/20 backdrop-blur-md">
-    <div id="vacation-modal" role="dialog" aria-modal="true" class="glass-premium p-6 rounded-[32px] w-full max-w-[420px] text-center shadow-2xl">
-      <h2 id="vacation-title" class="text-2xl font-black tracking-tight mb-4">🏖 Отпуск</h2>
-      <p id="vacation-text" class="text-sm leading-relaxed text-neutral-800 dark:text-neutral-200">
-        Уважаемые клиенты!<br><br>
-        С 06.07.2026г по 19.07.2026г, отдел не работает!<br><br>
-        Отпуск 🏖<br><br>
-        С радостью ждём вас с 20.07.2026г
+      <!-- Текст обновления -->
+      <h2 class="text-xl font-extrabold tracking-tight text-[var(--text-main)] mb-3" data-i18n="modal_title">Системные работы</h2>
+      <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-6" data-i18n="modal_desc">
+        На сервере мастерской производится развертывание обновлений интерфейса Pure Liquid Glass 2026. Сайт функционирует в режиме ограниченного превью.
       </p>
-      <span class="block text-[11px] leading-relaxed text-neutral-400 mt-4" id="vacation-subtext" data-i18n="vacation_sub">Сообщение показывается только один раз для каждого устройства. Его можно открыть снова через меню языка и темы.</span>
-      <button type="button" onclick="closeVacationMessage()" id="vacation-close-btn" class="btn-active-scale w-full mt-5 bg-gradient-to-r from-ios-blue to-sky-400 text-white font-extrabold py-3.5 rounded-2xl shadow-lg shadow-ios-blue/20" data-i18n="vacation_close">Понятно</button>
+
+      <!-- Индикатор UPDATE с точками -->
+      <div class="pure-glass px-4 py-2 rounded-full text-xs font-bold text-amber-600 dark:text-amber-400 tracking-wider mb-8 flex items-center gap-1">
+        <span>?? UPDATE</span><span id="update-dots-modal">...</span>
+      </div>
+
+      <!-- Кнопка Хорошо -->
+      <button onclick="dismissUpdateScreen()" class="w-full bg-slate-900 dark:bg-white hover:opacity-95 text-white dark:text-black py-4 rounded-2xl text-sm font-bold shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2">
+        <span data-i18n="modal_ok">Хорошо</span>
+      </button>
+
     </div>
   </div>
 
-  <!-- Скрытый Пульт для Быстрого Тестирования Событий (Активируется по 5 тапам на Dynamic Island!) -->
-  <div id="debug-menu" class="fixed bottom-24 left-1/2 -translate-x-1/2 w-[92%] max-w-[360px] glass-premium p-5 rounded-[28px] hidden z-[10000] text-center">
-    <h4 class="text-xs font-black uppercase tracking-wider mb-3">Тест Праздничных Режимов</h4>
-    <div class="flex flex-wrap gap-1.5 justify-center">
-      <button class="btn-active-scale bg-ios-blue text-white text-[10px] font-bold px-3 py-1.5 rounded-xl" onclick="testHoliday('ny')">Новый Год ❄️</button>
-      <button class="btn-active-scale bg-ios-blue text-white text-[10px] font-bold px-3 py-1.5 rounded-xl" onclick="testHoliday('may1')">1 Мая 🌸</button>
-      <button class="btn-active-scale bg-ios-blue text-white text-[10px] font-bold px-3 py-1.5 rounded-xl" onclick="testHoliday('may9')">9 Мая 🎗</button>
-      <button class="btn-active-scale bg-ios-blue text-white text-[10px] font-bold px-3 py-1.5 rounded-xl" onclick="testHoliday('bday')">ДР Магазина 🎁</button>
-      <button class="btn-active-scale bg-ios-blue text-white text-[10px] font-bold px-3 py-1.5 rounded-xl" onclick="testHoliday('summer')">Лето 🌊</button>
-      <button class="btn-active-scale bg-ios-blue text-white text-[10px] font-bold px-3 py-1.5 rounded-xl" onclick="testHoliday('vacation_force')">Отпуск 🏖</button>
-      <button class="btn-active-scale bg-ios-red text-white text-[10px] font-bold px-3.5 py-1.5 rounded-xl" onclick="testHoliday('reset')">Сбросить</button>
+  <!-- СЕКРЕТНАЯ ПАНЕЛЬ ТЕСТИРОВАНИЯ ПРАЗДНИКОВ -->
+  <div id="test-panel" class="fixed bottom-0 left-0 right-0 z-[200] translate-y-full transition-transform duration-500 pure-glass border-t border-white/30 dark:border-white/10 rounded-t-[32px] p-6 shadow-2xl">
+    <div class="max-w-[500px] mx-auto space-y-4">
+      <div class="flex items-center justify-between border-b border-[var(--divider)] pb-2">
+        <h3 class="font-extrabold text-xs uppercase tracking-wider text-slate-500">Секретный Пульт Тестирования</h3>
+        <button onclick="toggleTestPanel(false)" class="text-xs bg-black/10 dark:bg-white/10 px-2.5 py-1 rounded-full font-bold">Закрыть</button>
+      </div>
+      <p class="text-[11px] text-slate-400">Протестируйте сезонные анимации и эффекты заднего фона в обход текущей системной даты:</p>
+      <div class="grid grid-cols-2 gap-2">
+        <button onclick="forceSeason('ny')" class="bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-bold py-2.5 rounded-xl border border-blue-500/15">?? Новый Год</button>
+        <button onclick="forceSeason('may1')" class="bg-pink-500/10 hover:bg-pink-500/20 text-pink-600 dark:text-pink-400 text-xs font-bold py-2.5 rounded-xl border border-pink-500/15">?? 1 Мая</button>
+        <button onclick="forceSeason('may9')" class="bg-orange-500/10 hover:bg-orange-500/20 text-orange-600 dark:text-orange-400 text-xs font-bold py-2.5 rounded-xl border border-orange-500/15">??? 9 Мая</button>
+        <button onclick="forceSeason('bday')" class="bg-purple-500/10 hover:bg-purple-500/20 text-purple-600 dark:text-purple-400 text-xs font-bold py-2.5 rounded-xl border border-purple-500/15">?? День Рождения</button>
+        <button onclick="forceSeason('vac')" class="bg-amber-500/10 hover:bg-amber-500/20 text-amber-600 dark:text-amber-400 text-xs font-bold py-2.5 rounded-xl border border-amber-500/15">??? Отпуск</button>
+        <button onclick="resetSeason()" class="col-span-2 bg-slate-500/10 hover:bg-slate-500/20 text-[var(--text-main)] text-xs font-bold py-2.5 rounded-xl border border-slate-500/15">?? Сбросить к системной дате</button>
+      </div>
     </div>
   </div>
 
@@ -567,12 +488,6 @@
         srv3_name: "Ремонт кожи и меха",
         srv4_name: "Подшив брюк/джинс",
         from: "от",
-        contacts_title: "Связь с мастером",
-        phone: "Телефон",
-        tg_title: "Telegram канал",
-        tg_desc: "Наши новости",
-        max_title: "MAX канал",
-        max_desc: "Присоединиться",
         goods_title: "Наш товар, который можно купить:",
         footer: "АРТС&КРАФТИНГ • Тамбов • Мичуринская 141",
         status_loading: "Определяем статус...",
@@ -583,7 +498,7 @@
         status_closed_tmr: "Закрыто до завтра",
         status_ny: "Новогодние каникулы",
         status_victory: "С Днем Победы! (Выходной)",
-        status_vacation: "Отпуск 🏖",
+        status_vacation: "Отпуск",
         timer_open: "Мы открыты!",
         timer_close_until: "До закрытия:",
         timer_until: "До открытия:",
@@ -596,17 +511,19 @@
         menu_back: "Вернуться назад",
         theme_dark: "Тёмная тема",
         theme_light: "Светлая тема",
-        view_message: "Посмотреть сообщение",
-        vacation_sub: "Сообщение показывается только один раз для каждого устройства. Его можно открыть снова через меню языка и темы.",
-        vacation_close: "Понятно",
-        vacation_banner_title: "Предстоящий отпуск 🏖",
-        vacation_banner_dates: "С 6 по 19 июля 2026г.",
-        vacation_banner_text: "Уважаемые клиенты! Обратите внимание, что в указанный период мастерская не будет работать. Ждем вас со всеми заказами с 20 июля!",
-        island_updates_title: "Что нового:",
-        island_update_1: "Чистый стеклянный дизайн Pro",
-        island_update_2: "Автономный информер об отпуске",
-        island_update_3: "Полное устранение Beta-меток",
-        island_update_4: "Мгновенное переключение тем"
+        island_title: "Что изменилось:",
+        upd_1: "Стеклянный интерфейс Pure Liquid Glass",
+        upd_2: "Автономный информер летнего отпуска 2026",
+        upd_3: "Раздел контактов временно заблокирован",
+        upd_4: "Исправлена логика запуска Dynamic Island",
+        modal_title: "Системные работы",
+        modal_desc: "На сервере мастерской производится развертывание обновлений интерфейса Pure Liquid Glass 2026. Сайт функционирует в режиме ограниченного превью.",
+        modal_ok: "Хорошо",
+        vacation_banner_title: "Плановый летний отпуск 2026",
+        vacation_banner_status: "Отдел временно закрыт в указанные даты",
+        vacation_banner_desc: "Уважаемые клиенты! С 06.07.2026 по 19.07.2026 наша мастерская уходит на ежегодные летние каникулы. Мы с радостью продолжим работу в обычном режиме с 20 июля 2026 года!",
+        contacts_locked_title: "Идут обновления, подождите.",
+        contacts_locked_desc: "Раздел временно заблокирован"
       },
       en: {
         subtitle: "Clothing repair — honest and on time",
@@ -618,12 +535,6 @@
         srv3_name: "Leather & fur repair",
         srv4_name: "Pants/jeans hemming",
         from: "from",
-        contacts_title: "Contact the master",
-        phone: "Phone",
-        tg_title: "Telegram channel",
-        tg_desc: "Our news",
-        max_title: "MAX channel",
-        max_desc: "Join us",
         goods_title: "Our goods available for purchase:",
         footer: "ARTS&CRAFTING • Tambov • Michurinskaya 141",
         status_loading: "Checking status...",
@@ -634,7 +545,7 @@
         status_closed_tmr: "Closed until tomorrow",
         status_ny: "New Year holidays",
         status_victory: "Happy Victory Day! (Closed)",
-        status_vacation: "Vacation 🏖",
+        status_vacation: "Vacation",
         timer_open: "We are open!",
         timer_close_until: "Closing in:",
         timer_until: "Opening in:",
@@ -647,470 +558,221 @@
         menu_back: "Go back",
         theme_dark: "Dark Theme",
         theme_light: "Light Theme",
-        view_message: "View message",
-        vacation_sub: "The message is shown only once for each device. It can be reopened via the language and theme menu.",
-        vacation_close: "Got it",
-        vacation_banner_title: "Upcoming Vacation 🏖",
-        vacation_banner_dates: "From July 6 to July 19, 2026",
-        vacation_banner_text: "Dear customers! Please note that the workshop will be closed during this period. Looking forward to seeing you with all orders from July 20!",
-        island_updates_title: "What's new:",
-        island_update_1: "Pure glass Pro styling",
-        island_update_2: "Standalone vacation informer banner",
-        island_update_3: "Full removal of Beta labels",
-        island_update_4: "Instant theme toggler"
+        island_title: "What's new:",
+        upd_1: "Pure Liquid Glass premium interface design",
+        upd_2: "Autonomous vacation informer for July 2026",
+        upd_3: "Contact channels are locked during maintenance",
+        upd_4: "Patched Dynamic Island launch logic",
+        modal_title: "System Maintenance",
+        modal_desc: "Pure Liquid Glass 2026 UI updates deployment is currently in progress. Website is running in restricted preview mode.",
+        modal_ok: "Got it",
+        vacation_banner_title: "Planned Summer Vacation 2026",
+        vacation_banner_status: "Store is temporarily closed during these dates",
+        vacation_banner_desc: "Dear customers! From 06.07.2026 to 19.07.2026 our workshop will be closed for annual summer holidays. We look forward to seeing you back on July 20, 2026!",
+        contacts_locked_title: "Updates in progress, please wait.",
+        contacts_locked_desc: "Section temporarily locked"
       },
       kz: {
-        subtitle: "Киім жөндеу — адал және уақытында",
-        address_city: "Тамбов қ., Мичуринская 141",
-        address_desc: "Транзит СО, 2-қатар",
+        subtitle: "Киім ж?ндеу — адал ж?не уа?ытында",
+        address_city: "Тамбов ?., Мичуринская 141",
+        address_desc: "Транзит СО, 2-?атар",
         services_title: "Біз не істейміз",
-        srv1_name: "Жүгіртпені ауыстыру",
+        srv1_name: "Ж?гіртпені ауыстыру",
         srv2_name: "Сыдырманы ауыстыру",
-        srv3_name: "Былғары және үлбірді жөндеу",
+        srv3_name: "Был?ары ж?не ?лбірді ж?ндеу",
         srv4_name: "Шалбар/джинсы тігу",
         from: "бастап",
-        contacts_title: "Шебермен байланыс",
-        phone: "Телефон",
-        tg_title: "Telegram арнасы",
-        tg_desc: "Біздің жаңалықтар",
-        max_title: "MAX арнасы",
-        max_desc: "Қосылу",
-        goods_title: "Сатып алуға болатын біздің тауар:",
+        goods_title: "Сатып алу?а болатын бізді? тауар:",
         footer: "АРТС&КРАФТИНГ • Тамбов • Мичуринская 141",
-        status_loading: "Күйді тексеру...",
-        status_open: "Шеберхана ашық",
-        status_closed_until: "Сізді 9:00-ден күтеміз",
-        status_weekend: "Бүгін демалыс",
-        status_short: "15:00-ге дейін қысқартылған күн",
-        status_closed_tmr: "Ертеңге дейін жабық",
-        status_ny: "Жаңа жылдық демалыс",
-        status_victory: "Жеңіс күнімен! (Демалыс)",
-        status_vacation: "Демалыс 🏖",
-        timer_open: "Біз ашықпыз!",
+        status_loading: "К?йді тексеру...",
+        status_open: "Шеберхана ашы?",
+        status_closed_until: "Сізді 9:00-ден к?теміз",
+        status_weekend: "Б?гін демалыс",
+        status_short: "15:00-ге дейін ?ыс?артыл?ан к?н",
+        status_closed_tmr: "Ерте?ге дейін жабы?",
+        status_ny: "Жа?а жылды? демалыс",
+        status_victory: "Же?іс к?німен! (Демалыс)",
+        status_vacation: "Демалыс",
+        timer_open: "Біз ашы?пыз!",
         timer_close_until: "Жабылуына:",
         timer_until: "Ашылуына:",
-        timer_click: "(тағы басыңыз)",
-        timer_d: "күн", timer_h: "сағ", timer_m: "мин", timer_s: "сек",
-        menu_info: "Дүкен туралы ақпарат",
-        menu_founded: "Құрылған:", menu_date: "22 ақпан 2022 ж. 12:08",
-        menu_history: "Тарихы:", menu_history_text: "'Принт плюс' қарама-қарсы 2-ші қатарда құрылған, содан кейін Kodak дүкенінің жанындағы 2-ші қатарға ауыстырылған.",
-        menu_manager: "Басқарушы:", menu_manager_name: "Ксения Бондаренко Сергеевна",
-        menu_back: "Артқа оралу",
-        theme_dark: "Қараңғы тақырып",
-        theme_light: "Жарық тақырып",
-        view_message: "Хабарламаны көру",
-        vacation_sub: "Хабарлама әр құрылғыда тек бір рет көрсетіледі. Oны тіл мен тақырып мәзірінен қайта ашуға болады.",
-        vacation_close: "Түсінікті",
-        vacation_banner_title: "Жоспарланған демалыс 🏖",
-        vacation_banner_dates: "2026 жылғы 6 - 19 шілде аралығында",
-        vacation_banner_text: "Құрметті клиенттер! Аталған кезеңде шеберхана жұмыс істемейтінін ескеріңіз. Барлық тапсырыстарыңызбен сізді 20 шілдеден бастап күтеміз!",
-        island_updates_title: "Жаңалықтар:",
-        island_update_1: "Таза шыны Pro стилі",
-        island_update_2: "Автономды демалыс баннері",
-        island_update_3: "Beta белгілерін толық алып тастау",
-        island_update_4: "Тақырыпты жылдам ауыстыру тетігі"
+        timer_click: "(та?ы басы?ыз)",
+        timer_d: "к?н", timer_h: "са?", timer_m: "мин", timer_s: "сек",
+        menu_info: "Д?кен туралы а?парат",
+        menu_founded: "??рыл?ан:", menu_date: "22 а?пан 2022 ж. 12:08",
+        menu_history: "Тарихы:", menu_history_text: "'Принт плюс' ?арама-?арсы 2-ші ?атарда ??рыл?ан, содан кейін Kodak д?кеніні? жанында?ы 2-ші ?атар?а ауыстырыл?ан.",
+        menu_manager: "Бас?арушы:", menu_manager_name: "Ксения Бондаренко Сергеевна",
+        menu_back: "Арт?а оралу",
+        theme_dark: "?ара??ы та?ырып",
+        theme_light: "Жары? та?ырып",
+        island_title: "Не ?згерді:",
+        upd_1: "Pure Liquid Glass премиум интерфейсі",
+        upd_2: "2026 жыл?ы жаз?ы демалыс автономды информері",
+        upd_3: "Байланыс арналары жа?арту кезінде уа?ытша жабы?",
+        upd_4: "Dynamic Island іске ?осу логикасы т?зетілді",
+        modal_title: "Ж?йелік ж?мыстар",
+        modal_desc: "Шеберхана серверінде Pure Liquid Glass 2026 жа?а интерфейс жа?артулары жасалуда. Сайт шектеулі режимде ж?мыс істейді.",
+        modal_ok: "Т?сінікті",
+        vacation_banner_title: "Жоспарлан?ан жаз?ы демалыс 2026",
+        vacation_banner_status: "Б?лім к?рсетілген к?ндерде уа?ытша жабы?",
+        vacation_banner_desc: "??рметті т?тынушылар! 06.07.2026 бастап 19.07.2026 аралы?ында бізді? шеберханамыз жаз?ы демалыс?а кетеді. Сізді 20 шілдеден бастап к?теміз!",
+        contacts_locked_title: "Жа?артулар ж?руде, к?те т?ры?ыз.",
+        contacts_locked_desc: "Б?лім уа?ытша б??аттал?ан"
       }
     };
 
     let currentLang = 'ru';
     let isDarkMode = false;
     let islandClicks = 0;
-    let islandClickTimer;
+    let forcedSeasonMode = null;
     let titleDissolved = false;
-    let timerInterval;
-    let currentParticleType = null;
-    let forcedHoliday = null;
 
-    // --- ПЛАВНЫЙ ПЕРЕВОД ---
-    function setLang(lang, event) {
-      if (event) event.stopPropagation();
-      if (lang === currentLang) {
-        document.getElementById('lang-menu').classList.remove('open');
-        return;
-      }
-
-      document.getElementById('lang-menu').classList.remove('open');
-
-      // Плавное затухание страницы
-      const container = document.querySelector('.container');
-      container.style.opacity = '0';
-
+    // Закрытие экрана обновления
+    function dismissUpdateScreen() {
+      const overlay = document.getElementById('update-screen');
+      overlay.classList.add('opacity-0', 'scale-95');
       setTimeout(() => {
-        currentLang = lang;
+        overlay.style.display = 'none';
+      }, 700);
+    }
 
-        // Обновляем все переводимые элементы
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-          const key = el.getAttribute('data-i18n');
-          if (dict[currentLang][key]) {
-            el.innerText = dict[currentLang][key];
-          }
+    // Анимация точек в значке UPDATE
+    function animateUpdateDots() {
+      const dotElements = [
+        document.getElementById('update-dots-header'),
+        document.getElementById('update-dots-modal')
+      ];
+      let state = 0;
+      setInterval(() => {
+        state = (state + 1) % 4;
+        let dots = '.'.repeat(state);
+        if (state === 0) dots = '.';
+        dotElements.forEach(el => {
+          if (el) el.innerText = dots;
         });
-
-        // Синхронизируем заголовки
-        const icons = { ru: "🇷🇺", en: "🇬🇧", kz: "🇰🇿" };
-        const texts = { ru: "RU", en: "EN", kz: "KZ" };
-
-        document.getElementById('current-lang-icon').innerText = icons[currentLang];
-        document.getElementById('current-lang-text').innerText = texts[currentLang];
-
-        document.getElementById('vacation-title').innerText = currentLang === 'en' ? '🏖 Vacation' : (currentLang === 'kz' ? '🏖 Демалыс' : '🏖 Отпуск');
-        document.getElementById('vacation-subtext').innerText = dict[currentLang].vacation_sub || document.getElementById('vacation-subtext').innerText;
-        document.getElementById('vacation-close-btn').innerText = dict[currentLang].vacation_close || 'Понятно';
-
-        updateHolidaysAndStatus();
-
-        // Плавное проявление страницы
-        container.style.opacity = '1';
-      }, 250);
+      }, 500);
     }
 
-    // --- СТАНДАРТНОЕ УПРАВЛЕНИЕ МЕНЮ ---
-    function toggleLangMenu(e) {
-      if (e) e.stopPropagation();
+    // Выбор языков
+    function toggleLangMenu() {
       const menu = document.getElementById('lang-menu');
-      menu.classList.toggle('open');
+      menu.classList.toggle('opacity-0');
+      menu.classList.toggle('pointer-events-none');
+      menu.classList.toggle('scale-95');
     }
 
-    function toggleTheme(e) {
-      if (e) e.stopPropagation();
+    function toggleTheme() {
       isDarkMode = !isDarkMode;
       document.body.classList.toggle('dark-theme', isDarkMode);
-      document.documentElement.classList.toggle('dark', isDarkMode);
       
-      document.getElementById('theme-icon').innerText = isDarkMode ? '☀️' : '🌙';
-      document.getElementById('lang-menu').classList.remove('open');
+      const t = dict[currentLang];
+      document.getElementById('theme-emoji').innerText = isDarkMode ? '??' : '??';
+      document.getElementById('theme-label').innerText = isDarkMode ? t.theme_light : t.theme_dark;
+      toggleLangMenu();
     }
 
-    document.addEventListener('click', () => {
-      const menu = document.getElementById('lang-menu');
-      if (menu && menu.classList.contains('open')) {
-        menu.classList.remove('open');
-      }
-    });
+    function setLang(lang) {
+      currentLang = lang;
+      const icons = { ru: "????", en: "????", kz: "????" };
+      const texts = { ru: "RU", en: "EN", kz: "KZ" };
 
-    // --- УПРАВЛЕНИЕ ОКНОМ ОТПУСКА ---
-    const VACATION_MESSAGE_KEY = 'arts_crafting_vacation_notice_2026_v2';
+      document.getElementById('lang-icon').innerText = icons[lang];
+      document.getElementById('lang-text').innerText = texts[lang];
+      toggleLangMenu();
 
-    function applyVacationOpenState(isOpen) {
-      const overlay = document.getElementById('vacation-overlay');
-      const body = document.body;
-      if (isOpen) {
-        overlay.style.display = 'flex';
-        overlay.setAttribute('aria-hidden', 'false');
-        body.classList.add('message-open');
-      } else {
-        overlay.style.display = 'none';
-        overlay.setAttribute('aria-hidden', 'true');
-        body.classList.remove('message-open');
-      }
-    }
-
-    function showVacationMessage() {
-      applyVacationOpenState(true);
-      document.getElementById('lang-menu').classList.remove('open');
-    }
-
-    function closeVacationMessage() {
-      localStorage.setItem(VACATION_MESSAGE_KEY, 'seen');
-      applyVacationOpenState(false);
-    }
-
-    function initVacationMessage() {
-      const seen = localStorage.getItem(VACATION_MESSAGE_KEY) === 'seen';
-      if (!seen) {
-        setTimeout(showVacationMessage, 450);
-      } else {
-        applyVacationOpenState(false);
-      }
-    }
-
-    // --- ПЛАВНОЕ ПОЯВЛЕНИЕ ЭЛЕМЕНТОВ ---
-    const elementsToReveal = document.querySelectorAll('.glass-premium, .widget-card, .service-card, .ios-list, .photo-grid, .section-title');
-    elementsToReveal.forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(15px)';
-      el.style.transition = 'opacity 0.8s var(--spring), transform 0.8s var(--spring)';
-    });
-
-    const scrollObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          scrollObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    elementsToReveal.forEach(el => scrollObserver.observe(el));
-
-    // --- СЛЕДИТЕЛЬ ЗА АКТИВНЫМ ПУНКТОМ МЕНЮ ---
-    const navSections = document.querySelectorAll('.section-anchor');
-    const navObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
-          const currentId = entry.target.id;
-          document.querySelectorAll('.nav-btn').forEach(btn => {
-            if (btn.getAttribute('data-target') === currentId) {
-              btn.classList.add('active'); 
-            } else {
-              btn.classList.remove('active'); 
-            }
-          });
-        }
-      });
-    }, { threshold: [0.4] });
-
-    navSections.forEach(sec => navObserver.observe(sec));
-
-    // --- ИНТЕРАКТИВНЫЙ DYNAMIC ISLAND ---
-    function toggleIsland(event) {
-      if (event.target.tagName === 'A' || event.target.closest('a')) return;
-      const island = document.getElementById('dynamic-island');
-      
-      islandClicks++;
-      clearTimeout(islandClickTimer);
-      islandClickTimer = setTimeout(() => { islandClicks = 0; }, 1800);
-
-      if (islandClicks >= 5) {
-        const dbg = document.getElementById('debug-menu');
-        dbg.classList.toggle('hidden');
-        islandClicks = 0;
-        return;
-      }
-
-      island.classList.toggle('expanded');
-      if (island.classList.contains('expanded')) {
-        island.style.width = '280px';
-      } else {
-        island.style.width = '190px';
-      }
-    }
-
-    document.addEventListener('click', (e) => {
-      const island = document.getElementById('dynamic-island');
-      if (island && !island.contains(e.target) && island.classList.contains('expanded')) {
-        island.classList.remove('expanded');
-        island.style.width = '190px';
-      }
-    });
-
-    // --- ЛОГИКА ТАЙМЕРА РАБОТЫ ---
-    function getTargetTime(mskNow, isOpen) {
-      let target = new Date(mskNow.getTime());
-      const month = target.getMonth();
-      const date = target.getDate();
-      const day = target.getDay();
-
-      if (isOpen) {
-        if (month === 4 && date === 9) target.setHours(15, 0, 0, 0);
-        else if (day >= 1 && day <= 5) target.setHours(18, 0, 0, 0);
-        else if (day === 6) target.setHours(17, 0, 0, 0);
-        return { time: target, type: 'close' };
-      } else {
-        for (let i = 0; i < 30; i++) {
-          let testDay = new Date(mskNow.getTime());
-          if (i > 0) {
-            testDay.setDate(testDay.getDate() + i);
-            testDay.setHours(0, 0, 0, 0); 
-          }
-          const m = testDay.getMonth();
-          const d = testDay.getDate();
-          const w = testDay.getDay();
-
-          if (((m === 11 && d === 31) || (m === 0 && d >= 1 && d <= 4))) continue; 
-          if (w === 0) continue; 
-
-          let openHour = (w === 6) ? 10 : 9; 
-          testDay.setHours(openHour, 0, 0, 0);
-
-          if (testDay.getTime() > mskNow.getTime()) {
-            return { time: testDay, type: 'open' };
-          }
-        }
-      }
-      return null;
-    }
-
-    function handleTitleClick() {
-      if (titleDissolved) return; 
-      titleDissolved = true;
-      
-      const title = document.getElementById('main-title');
-      const subtitle = document.getElementById('header-subtitle');
-      const text = title.innerText;
-      title.innerHTML = ''; 
-      subtitle.style.display = 'none';
-
-      for (let i = 0; i < text.length; i++) {
-        let span = document.createElement('span');
-        span.innerText = text[i] === ' ' ? '\u00A0' : text[i];
-        span.className = 'sand-letter';
-        let rot = (Math.random() - 0.5) * 80; 
-        let delay = Math.random() * 0.4; 
-        span.style.setProperty('--rot', rot + 'deg');
-        span.style.transitionDelay = delay + 's';
-        title.appendChild(span);
-      }
-
-      requestAnimationFrame(() => {
-        const letters = title.querySelectorAll('.sand-letter');
-        letters.forEach(l => l.classList.add('crumble'));
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[lang][key]) el.innerText = dict[lang][key];
       });
 
-      setTimeout(() => {
-        title.style.display = 'none';
-        
-        if (window.globalIsVacation) {
-           document.getElementById('store-info-menu').style.display = 'block';
-        } else {
-           const now = new Date();
-           const mskNow = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (3 * 3600000));
-           const targetObj = getTargetTime(mskNow, window.globalIsOpen);
-           if (targetObj) startTimer(targetObj.time, targetObj.type);
-        }
-      }, 1200);
-    }
-
-    function startTimer(targetTimeMsk, type) {
-      const timerEl = document.getElementById('countdown-timer');
-      timerEl.className = "glass-premium p-5 rounded-[24px] cursor-pointer text-center block mt-4 transition-all duration-300 hover:scale-[1.02] shadow-sm";
-      timerEl.onclick = showMiniMenu;
-
-      function updateTimer() {
-        const now = new Date();
-        const mskNow = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (3 * 3600000));
-        const diff = targetTimeMsk.getTime() - mskNow.getTime();
-        const t = dict[currentLang];
-
-        if (diff <= 0) {
-           timerEl.innerHTML = `<div class="text-base font-black text-ios-green">Статус обновлен!</div>`;
-           clearInterval(timerInterval);
-           setTimeout(() => location.reload(), 2000); 
-           return;
-        }
-
-        const hoursLeft = diff / (1000 * 60 * 60);
-        let timerColor = '';
-
-        if (hoursLeft >= 15) {
-          timerColor = 'rgb(52, 199, 89)'; 
-        } else if (hoursLeft <= 0) {
-          timerColor = 'rgb(255, 59, 48)'; 
-        } else {
-          const ratio = hoursLeft / 15; 
-          const r = Math.round(255 - (255 - 52) * ratio);
-          const g = Math.round(59 + (199 - 59) * ratio);
-          const b = Math.round(48 + (89 - 48) * ratio);
-          timerColor = `rgb(${r}, ${g}, ${b})`;
-        }
-
-        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const m = Math.floor((diff / 1000 / 60) % 60);
-        const s = Math.floor((diff / 1000) % 60);
-
-        let timeStr = "";
-        if (d > 0) timeStr += d + " " + t.timer_d + " ";
-        timeStr += String(h).padStart(2, '0') + " " + t.timer_h + " ";
-        timeStr += String(m).padStart(2, '0') + " " + t.timer_m + " ";
-        timeStr += String(s).padStart(2, '0') + " " + t.timer_s;
-
-        const headingText = (type === 'close') ? t.timer_close_until : t.timer_until;
-
-        timerEl.innerHTML = `
-          <div class="text-[11px] font-bold text-neutral-400 dark:text-neutral-500 uppercase tracking-wider mb-1">${headingText}</div>
-          <div class="text-2xl font-black" style="color: ${timerColor};">${timeStr}</div>
-          <div class="text-[9px] text-neutral-400 dark:text-neutral-500 mt-1">${t.timer_click}</div>
-        `;
-      }
-      
-      updateTimer();
-      timerInterval = setInterval(updateTimer, 1000);
-    }
-
-    function showMiniMenu() {
-      clearInterval(timerInterval);
-      document.getElementById('countdown-timer').style.display = 'none';
-      const menu = document.getElementById('store-info-menu');
-      menu.style.display = 'block';
-    }
-
-    function resetToTitle() {
-      document.getElementById('store-info-menu').style.display = 'none';
-      const title = document.getElementById('main-title');
-      title.innerHTML = 'АРТС&КРАФТИНГ'; 
-      title.style.display = 'inline-block';
-      title.style.opacity = '1';
-      title.style.transform = 'none';
-      document.getElementById('header-subtitle').style.display = 'block'; 
-      titleDissolved = false; 
-    }
-
-    // --- ПАКЕТ СЕЗОННЫХ ЧАСТИЦ ---
-    function createParticles(type) {
-      if (currentParticleType === type) return;
-      currentParticleType = type;
-      const container = document.getElementById('particles-container');
-      container.innerHTML = ''; 
-      if (!type) return;
-
-      const elements = [];
-      let count = 40;
-
-      if (type === 'snow') { elements.push('❄️', '❅', '❆'); count = 45; }
-      if (type === 'snow-gift') { elements.push('❄️', '❅', '🎁'); count = 55; }
-      if (type === 'flowers') { elements.push('🌸', '💮'); count = 30; }
-      if (type === 'gifts') { elements.push('🎁', '🎉', '🎊'); count = 25; }
-
-      for (let i = 0; i < count; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        p.innerText = elements[Math.floor(Math.random() * elements.length)];
-        p.style.left = Math.random() * 100 + 'vw';
-        p.style.animationDuration = (Math.random() * 3 + 5) + 's';
-        p.style.animationDelay = Math.random() * 5 + 's';
-        p.style.fontSize = (Math.random() * 12 + 14) + 'px';
-        container.appendChild(p);
-      }
-    }
-
-    function testHoliday(type) {
-      forcedHoliday = type;
+      document.getElementById('theme-label').innerText = isDarkMode ? dict[lang].theme_light : dict[lang].theme_dark;
       updateHolidaysAndStatus();
     }
 
-    // --- СЕРДЦЕ СИСТЕМЫ: АНАЛИЗ СТАТУСОВ И ДАТ ---
-    function updateHolidaysAndStatus() {
-      const now = new Date();
-      const msk = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (3 * 3600000));
-      const t = dict[currentLang]; 
-      
-      let year = msk.getFullYear();
-      let month = msk.getMonth(); 
-      let date = msk.getDate();
-      let day = msk.getDay(); 
-      let hour = msk.getHours();
-      let min = msk.getMinutes();
+    document.addEventListener('click', (e) => {
+      const langBtn = document.getElementById('lang-btn');
+      const langMenu = document.getElementById('lang-menu');
+      if (langBtn && langMenu && !langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+        langMenu.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+      }
+    });
 
-      // Вывод даты в Dynamic Island
-      const mskFormatted = msk.toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : (currentLang === 'kz' ? 'kk-KZ' : 'en-US'), {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      });
-      document.getElementById('island-current-date').innerText = '📅 ' + mskFormatted;
-
-      if (forcedHoliday) {
-        if (forcedHoliday === 'ny') { month = 11; date = 30; }
-        else if (forcedHoliday === 'may1') { month = 4; date = 1; }
-        else if (forcedHoliday === 'may9') { month = 4; date = 9; }
-        else if (forcedHoliday === 'bday') { month = 1; date = 22; }
-        else if (forcedHoliday === 'summer') { month = 6; date = 15; }
-        else if (forcedHoliday === 'vacation_force') { month = 6; date = 10; }
+    // Логика Dynamic Island и статусных календарей
+    const island = document.getElementById('dynamic-island');
+    island.addEventListener('click', () => {
+      islandClicks++;
+      if (islandClicks >= 5) {
+        toggleTestPanel(true);
+        islandClicks = 0;
       }
 
-      const time = hour + min/60;
+      const collapsed = document.getElementById('island-collapsed');
+      const expanded = document.getElementById('island-expanded');
+
+      if (expanded.classList.contains('hidden')) {
+        // Раскрытие острова
+        const now = new Date();
+        const msk = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (3 * 3600000));
+        const dateOptions = { month: 'long', day: 'numeric', year: 'numeric' };
+        document.getElementById('expanded-date').innerText = msk.toLocaleDateString(currentLang === 'ru' ? 'ru-RU' : (currentLang === 'kz' ? 'kk-KZ' : 'en-US'), dateOptions);
+
+        island.style.width = '300px';
+        island.style.height = '180px';
+        collapsed.classList.add('opacity-0');
+        setTimeout(() => {
+          collapsed.classList.add('hidden');
+          expanded.classList.remove('hidden');
+        }, 150);
+      } else {
+        // Сжатие острова
+        island.style.width = '200px';
+        island.style.height = '44px';
+        expanded.classList.add('hidden');
+        collapsed.classList.remove('hidden');
+        setTimeout(() => {
+          collapsed.classList.remove('opacity-0');
+        }, 50);
+      }
+    });
+
+    // Секретный пульт
+    function toggleTestPanel(show) {
+      const panel = document.getElementById('test-panel');
+      panel.style.transform = show ? 'translateY(0)' : 'translateY(100%)';
+    }
+
+    function forceSeason(mode) {
+      forcedSeasonMode = mode;
+      updateHolidaysAndStatus();
+    }
+
+    function resetSeason() {
+      forcedSeasonMode = null;
+      updateHolidaysAndStatus();
+    }
+
+    // Расчет дат, статусов и праздников
+    function updateHolidaysAndStatus() {
+      const now = new Date();
+      // Вычисляем время по МСК (UTC+3)
+      const msk = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + (3 * 3600000));
+      const t = dict[currentLang];
+
+      let month = msk.getMonth();
+      let date = msk.getDate();
+      let day = msk.getDay();
+      let hour = msk.getHours();
+      let min = msk.getMinutes();
+      let time = hour + min / 60;
+
+      // Если включен режим тестирования на пульте, подменяем системную дату
+      if (forcedSeasonMode) {
+        if (forcedSeasonMode === 'ny') { month = 11; date = 31; day = 4; }
+        else if (forcedSeasonMode === 'may1') { month = 4; date = 1; day = 1; }
+        else if (forcedSeasonMode === 'may9') { month = 4; date = 9; day = 4; }
+        else if (forcedSeasonMode === 'bday') { month = 1; date = 22; day = 2; }
+        else if (forcedSeasonMode === 'vac') { month = 6; date = 10; day = 3; }
+      }
 
       const wWidget = document.getElementById('holiday-widget');
       const wTitle = document.getElementById('holiday-title');
@@ -1119,54 +781,45 @@
       const wRibbon = document.getElementById('holiday-ribbon');
       const bgRibbons = document.getElementById('ribbons-bg');
       const waves = document.getElementById('summer-waves');
-      const stVacationCard = document.getElementById('standalone-vacation-card');
 
       wWidget.style.display = 'none';
       wRibbon.style.display = 'none';
       bgRibbons.style.display = 'none';
       wIcon.style.display = 'block';
+
       let particleType = null;
       let isHolidayClosed = false;
       let isVacation = false;
 
-      // Летние волны (с 1 июня по 1 сентября)
+      // Летние волны (с 1 июня по 1 сентября: июнь(5), июль(6), август(7))
       const isSummer = (month >= 5 && month <= 7);
-      if(waves) waves.style.display = isSummer ? 'block' : 'none';
+      if (waves) waves.style.display = isSummer ? 'block' : 'none';
 
       // 1. Отпуск (6-19 июля)
-      if ((month === 6 && date >= 6 && date <= 19) || forcedHoliday === 'vacation_force') {
+      if (month === 6 && date >= 6 && date <= 19) {
         isVacation = true;
       }
 
-      // Постоянный показ автономной карточки отпуска, если отпуск еще впереди или уже идет
-      if (stVacationCard) {
-        if ((month === 5 && date >= 1) || (month === 6 && date <= 19) || forcedHoliday === 'vacation_force') {
-          stVacationCard.style.display = 'flex';
-        } else {
-          stVacationCard.style.display = 'none';
-        }
-      }
-
-      // 2. 9 Мая
+      // 2. 9 Мая (с 3 по 10 мая)
       if (month === 4 && date >= 3 && date <= 10) {
         wWidget.style.display = 'flex';
         bgRibbons.style.display = 'block';
         wRibbon.style.display = 'block';
         wIcon.style.display = 'none';
-        wText.innerText = currentLang === 'ru' ? 'С Днем Великой Победы. Мирного неба над головой!' : (currentLang === 'en' ? 'Happy Victory Day. Peaceful sky above!' : 'Жеңіс күні құтты болсын. Аспанымыз ашық болсын!');
+        wText.innerText = currentLang === 'ru' ? 'С Днем Великой Победы. Мирного неба над головой!' : (currentLang === 'en' ? 'Happy Victory Day. Peaceful sky above!' : 'Же?іс к?ні ??тты болсын. Аспанымыз ашы? болсын!');
         
-        if (date < 9) wTitle.innerText = currentLang === 'ru' ? 'С наступающим 9 Мая!' : (currentLang === 'en' ? 'Upcoming May 9th!' : 'Келе жатқан 9 мамырмен!');
-        else wTitle.innerText = currentLang === 'ru' ? 'С 9 Мая!' : (currentLang === 'en' ? 'Happy May 9th!' : '9 мамыр құтты болсын!');
+        if (date < 9) wTitle.innerText = currentLang === 'ru' ? 'С наступающим 9 Мая!' : (currentLang === 'en' ? 'Upcoming May 9th!' : 'Келе жат?ан 9 мамырмен!');
+        else wTitle.innerText = currentLang === 'ru' ? 'С 9 Мая!' : (currentLang === 'en' ? 'Happy May 9th!' : '9 мамыр ??тты болсын!');
       }
       
-      // 3. Новый год
+      // 3. Новый год (26 декабря - 14 января)
       else if ((month === 11 && date >= 26) || (month === 0 && date <= 14)) {
         wWidget.style.display = 'flex';
-        wIcon.innerText = '🎄';
-        wText.innerText = currentLang === 'ru' ? 'Желаем счастья, тепла и уюта в новом году!' : (currentLang === 'en' ? 'Wishing you happiness, warmth and comfort in the new year!' : 'Жаңа жылда бақыт, жылулық пен жайлылық тілейміз!');
+        wIcon.innerText = '??';
+        wText.innerText = currentLang === 'ru' ? 'Желаем счастья, тепла и уюта в новом году!' : (currentLang === 'en' ? 'Wishing you happiness, warmth and comfort in the new year!' : 'Жа?а жылда ба?ыт, жылулы? пен жайлылы? тілейміз!');
         
-        if (month === 11) wTitle.innerText = currentLang === 'ru' ? 'С наступающим Новым годом!' : (currentLang === 'en' ? 'Happy upcoming New Year!' : 'Келе жатқан Жаңа жылмен!');
-        else wTitle.innerText = currentLang === 'ru' ? 'С Новым годом!' : (currentLang === 'en' ? 'Happy New Year!' : 'Жаңа жыл құтты болсын!');
+        if (month === 11) wTitle.innerText = currentLang === 'ru' ? 'С наступающим Новым годом!' : (currentLang === 'en' ? 'Happy upcoming New Year!' : 'Келе жат?ан Жа?а жылмен!');
+        else wTitle.innerText = currentLang === 'ru' ? 'С Новым годом!' : (currentLang === 'en' ? 'Happy New Year!' : 'Жа?а жыл ??тты болсын!');
 
         if (month === 0 && date === 1 && hour >= 0 && hour < 2) particleType = 'snow-gift';
         else particleType = 'snow';
@@ -1174,30 +827,30 @@
         if ((month === 11 && date === 31) || (month === 0 && date >= 1 && date <= 4)) isHolidayClosed = true;
       }
       
-      // 4. 1 Мая
+      // 4. 1 Мая (30 апреля - 2 мая)
       else if ((month === 3 && date === 30) || (month === 4 && date <= 2)) {
         wWidget.style.display = 'flex';
-        wIcon.innerText = '🌸';
-        wText.innerText = currentLang === 'ru' ? 'Весеннего настроения, радости и успехов во всех делах!' : (currentLang === 'en' ? 'Spring mood, joy and success in all your endeavors!' : 'Көктемгі көңіл-күй, қуаныш пен барлық істеріңізге сәттілік тілейміз!');
+        wIcon.innerText = '??';
+        wText.innerText = currentLang === 'ru' ? 'Весеннего настроения, радости и успехов во всех делах!' : (currentLang === 'en' ? 'Spring mood, joy and success in all your endeavors!' : 'К?ктемгі к??іл-к?й, ?уаныш пен барлы? істері?ізге с?ттілік тілейміз!');
         particleType = 'flowers';
         
-        if (month === 3 && date === 30) wTitle.innerText = currentLang === 'ru' ? 'С наступающим 1 Мая!' : (currentLang === 'en' ? 'Upcoming May 1st!' : 'Келе жатқан 1 мамырмен!');
-        else wTitle.innerText = currentLang === 'ru' ? 'С 1 Мая! Мир, Труд, Май!' : (currentLang === 'en' ? 'Happy May 1st! Peace, Labor, May!' : '1 мамырмен! Бейбітшілік, Еңбек, Мамыр!');
+        if (month === 3 && date === 30) wTitle.innerText = currentLang === 'ru' ? 'С наступающим 1 Мая!' : (currentLang === 'en' ? 'Upcoming May 1st!' : 'Келе жат?ан 1 мамырмен!');
+        else wTitle.innerText = currentLang === 'ru' ? 'С 1 Мая! Мир, Труд, Май!' : (currentLang === 'en' ? 'Happy May 1st! Peace, Labor, May!' : '1 мамырмен! Бейбітшілік, Е?бек, Мамыр!');
       }
       
-      // 5. День Рождения магазина
+      // 5. День Рождения магазина (22 февраля)
       else if (month === 1 && date === 22) {
         wWidget.style.display = 'flex';
-        wIcon.innerText = '🎂';
-        wTitle.innerText = currentLang === 'ru' ? 'С Днём Рождения магазина!' : (currentLang === 'en' ? 'Happy Store Birthday!' : 'Дүкеннің туған күнімен!');
-        wText.innerText = currentLang === 'ru' ? 'Сегодня мы празднуем еще один год работы. Спасибо, что вы с нами!' : (currentLang === 'en' ? 'Today we celebrate another year of work. Thank you for being with us!' : 'Бүгін біз тағы бір жыл жұмыс істегенімізді атап өтеміз. Бізбен бірге болғаныңызға рақмет!');
+        wIcon.innerText = '??';
+        wTitle.innerText = currentLang === 'ru' ? 'С Днём Рождения магазина!' : (currentLang === 'en' ? 'Happy Store Birthday!' : 'Д?кенні? ту?ан к?німен!');
+        wText.innerText = currentLang === 'ru' ? 'Сегодня мы празднуем еще один год работы. Спасибо, что вы с нами!' : (currentLang === 'en' ? 'Today we celebrate another year of work. Thank you for being with us!' : 'Б?гін біз та?ы бір жыл ж?мыс істегенімізді атап ?теміз. Бізбен бірге бол?аны?ыз?а ра?мет!');
         particleType = 'gifts';
       }
 
       createParticles(particleType);
 
       let open = false;
-      let statusString = t.status_closed_tmr; 
+      let statusString = t.status_closed_tmr;
 
       if (isVacation) {
         statusString = t.status_vacation;
@@ -1217,36 +870,110 @@
         }
       }
 
-      window.globalIsOpen = open; 
+      window.globalIsOpen = open;
       window.globalIsVacation = isVacation;
 
       const dot = document.getElementById('status-dot');
       const label = document.getElementById('status-text');
 
-      // Сброс классов
-      dot.className = "w-2 h-2 rounded-full transition-all duration-500 shrink-0";
-
       if (isVacation) {
-        // Желтая точка при отпуске
-        dot.classList.add("bg-ios-yellow", "shadow-[0_0_12px_rgba(255,204,0,0.85)]", "animate-pulse");
+        dot.className = "w-2.5 h-2.5 rounded-full bg-yellow-500 shadow-[0_0_10px_#ffcc00] animate-pulse";
         label.innerText = statusString;
       } else if (isHolidayClosed) {
-        dot.classList.add("bg-ios-red", "shadow-[0_0_10px_#ff3b30]");
+        dot.className = "w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_10px_#ff3b30]";
         label.innerText = statusString;
       } else if (open) {
-        dot.classList.add("bg-ios-green", "shadow-[0_0_12px_rgba(52,199,89,0.85)]", "animate-pulse");
+        dot.className = "w-2.5 h-2.5 rounded-full bg-green-500 shadow-[0_0_10px_#34c759] animate-pulse";
         label.innerText = statusString;
       } else {
-        dot.classList.add("bg-zinc-500");
+        dot.className = "w-2.5 h-2.5 rounded-full bg-slate-500";
         label.innerText = statusString;
       }
     }
 
-    // --- СТАРТ ПРИЛОЖЕНИЯ ---
-    updateHolidaysAndStatus(); 
-    setLang('ru'); 
-    initVacationMessage();
-    setInterval(updateHolidaysAndStatus, 30000);
+    // Логика фоновых праздничных частиц
+    function createParticles(type) {
+      if (currentParticleType === type) return;
+      currentParticleType = type;
+      const container = document.getElementById('particles-container');
+      container.innerHTML = ''; 
+      if (!type) return;
+
+      const elements = [];
+      let count = 40;
+
+      if (type === 'snow') { elements.push('??', '?', '?'); count = 45; }
+      if (type === 'snow-gift') { elements.push('??', '?', '??'); count = 55; }
+      if (type === 'flowers') { elements.push('??', '??'); count = 30; }
+      if (type === 'gifts') { elements.push('??', '??', '??'); count = 30; }
+
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.innerText = elements[Math.floor(Math.random() * elements.length)];
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.animationDuration = (Math.random() * 4 + 6) + 's';
+        p.style.animationDelay = Math.random() * 5 + 's';
+        p.style.fontSize = (Math.random() * 12 + 14) + 'px';
+        container.appendChild(p);
+      }
+    }
+
+    // Осыпающийся логотип
+    function handleTitleClick() {
+      if (titleDissolved) return; 
+      titleDissolved = true;
+      
+      const title = document.getElementById('main-title');
+      const subtitle = document.getElementById('header-subtitle');
+      const text = title.innerText;
+      title.innerHTML = ''; 
+      subtitle.style.opacity = '0';
+
+      for (let i = 0; i < text.length; i++) {
+        let span = document.createElement('span');
+        span.innerText = text[i] === ' ' ? '\u00A0' : text[i];
+        span.className = 'sand-letter';
+        let rot = (Math.random() - 0.5) * 80; 
+        let delay = Math.random() * 0.4; 
+        span.style.setProperty('--rot', rot + 'deg');
+        span.style.transitionDelay = delay + 's';
+        title.appendChild(span);
+      }
+
+      requestAnimationFrame(() => {
+        const letters = title.querySelectorAll('.sand-letter');
+        letters.forEach(l => l.classList.add('crumble'));
+      });
+
+      setTimeout(() => {
+        title.style.display = 'none';
+        subtitle.style.display = 'none';
+        
+        // Показываем меню информации о магазине сразу, как и просил пользователь
+        document.getElementById('store-info-menu').classList.remove('hidden');
+      }, 1200);
+    }
+
+    function resetToTitle() {
+      document.getElementById('store-info-menu').classList.add('hidden');
+      const title = document.getElementById('main-title');
+      title.innerHTML = 'АРТС&КРАФТИНГ'; 
+      title.style.display = 'inline-block';
+      title.style.opacity = '1';
+      title.style.transform = 'none';
+      const subtitle = document.getElementById('header-subtitle');
+      subtitle.style.display = 'block'; 
+      subtitle.style.opacity = '1';
+      titleDissolved = false; 
+    }
+
+    // Инициализация при загрузке страницы
+    window.onload = function() {
+      animateUpdateDots();
+      updateHolidaysAndStatus();
+      setInterval(updateHolidaysAndStatus, 30000);
+    };
   </script>
 </body>
 </html>
